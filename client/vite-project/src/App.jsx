@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <div>
-        <h1>React + Vite</h1>
+        <h1>React + Vit</h1>
         
 
      
