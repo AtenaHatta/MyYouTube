@@ -1,17 +1,21 @@
 import React from 'react';
 import Header from './components/sections/Header';
 import Category from './components/sections/Category';
-import Menu from './components/sections/Menu';
 import Main from './components/sections/Main';
+import HamburgerMenu from './components/sections/HamburgerMenu';
 
 
 function Home(){
  return (
   <>
-    <Header />
-    <Category />
-    <Menu />
-    <Main />
+    <div className="flex justify-evenly">
+      <HamburgerMenu />
+      <div>
+      <Header />
+      <Category />
+      <Main />
+      </div>
+    </div>
   </>
  )
 }
