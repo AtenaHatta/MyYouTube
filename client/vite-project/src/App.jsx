@@ -1,5 +1,7 @@
-import Home from "./Home";
+import Home from "./components/Home";
 import React, { useEffect, useState } from "react";
+import { Routes , Route } from "react-router-dom";
+import Signin from "./components/userAuth/Signin";
 
 
 function App() {
@@ -31,8 +33,22 @@ function App() {
 
   return (
     <>
-      <Home />
-      {/* <form onSubmit={handleSubmit}>
+      {/* <Home /> */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<Signin />} />
+
+      </Routes>
+      
+    </>
+  );
+}
+
+export default App;
+
+
+
+{/* <form onSubmit={handleSubmit}>
         <input
           value={form}
           onChange={(e) => setForm(e.target.value)}
@@ -50,8 +66,3 @@ function App() {
           ></iframe>
         </React.Fragment>
       ))} */}
-    </>
-  );
-}
-
-export default App;

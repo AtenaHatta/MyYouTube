@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, TextField, Typography, Container } from '@mui/material';
 
-const SignInForm = () => {
+const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -37,4 +37,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default Signin;
