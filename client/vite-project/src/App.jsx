@@ -1,35 +1,28 @@
 import Home from "./components/Home";
 import React, { useEffect, useState } from "react";
-import { Routes , Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Signin from "./components/userAuth/Signin";
-
+import Signup from "./components/userAuth/Signup";
 
 function App() {
   const [data, setData] = useState([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("travel");
   const [form, setForm] = useState("");
-  const key = import.meta.env.VITE_YOUTUBE_APIKEY;
+
+  const host = import.meta.env.VITE_HOST;
+  const url = `${host}/youtube/search/${search}`;
+
+  const fetchData = async () => {
+    const response = await fetch(url);
+
+    const data = await response.json();
+    console.log(data);
+    setData(data);
+  };
 
   useEffect(() => {
-    fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&order=viewCount&q=${search}&key=${key}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch((err) => console.log(err));
+    fetchData();
   }, [search]);
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    setSearch(form);
-  }
 
   return (
     <>
@@ -37,18 +30,16 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<Signin />} />
-
+        <Route path="/signup" element={<Signup />} />
       </Routes>
-      
     </>
   );
 }
 
 export default App;
 
-
-
-{/* <form onSubmit={handleSubmit}>
+{
+  /* <form onSubmit={handleSubmit}>
         <input
           value={form}
           onChange={(e) => setForm(e.target.value)}
@@ -65,4 +56,5 @@ export default App;
             src={`https://www.youtube.com/embed/${item.id.videoId}`}
           ></iframe>
         </React.Fragment>
-      ))} */}
+      ))} */
+}

@@ -5,8 +5,9 @@ const methodOverride = require("method-override");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-// Put routes here
+const youtubeRouter = require("./src/routes/youtube.router");
 
+// Put routes here
 const app = express();
 
 app.use(morgan("dev"));
@@ -16,12 +17,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-const port = process.env.PORT || 8000;
-
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+app.use("/youtube", youtubeRouter)
+
+
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening at http://localhost:${process.env.PORT}`);
 });

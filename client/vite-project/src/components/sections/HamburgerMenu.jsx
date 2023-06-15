@@ -13,19 +13,22 @@ function HamburgerMenu() {
   };
 
   return (
-    <div className="w-250 mt-10 "> 
-      <div className="flex items-cente absolute top-10 left-10">
-        <div className="ml-auto  ">
-          <button
-           className={`text-white hover:text-gray-200 focus:outline-none flex flex-col items-left justify-start`}
-           onClick={toggleMenu}
-          >
-          {isOpen ? <HiMenu className="w-6 h-6" /> : <HiMenu className="w-6 h-6" />}
-          </button>
-        </div>
-        <img className="youtubelogo w-10 h-10 mr-1" src={youtubelogo} alt="youtubelogo" />
-        <div className="hidden sm:block text-white text-5">MyYouTube</div>
-      </div>
+    <div className="w-200"> 
+      <div className="flex justify-between items-center absolute top-10 left-10"> 
+        <div className="ml-auto">
+        <button
+        className={`text-white hover:text-gray-200 focus:outline-none flex flex-col items-left justify-start`}
+        onClick={toggleMenu}
+        >
+        {isOpen ? <HiMenu className="w-6 h-6" /> : <HiMenu className="w-6 h-6" />}
+        </button>
+       </div>
+     <div className="flex items-center"> 
+       <img className="youtubelogo w-10 h-10 mr-1" src={youtubelogo} alt="youtubelogo" />
+       <div className="hidden sm:block text-white text-1xl">MyYouTube</div> 
+     </div>
+     </div>
+
 
       {isOpen && (
         <div className="bg-black text-white p-4 rounded-md">

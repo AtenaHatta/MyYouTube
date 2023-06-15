@@ -16,13 +16,8 @@ function Header() {
     setIsMenuOpen(false);
   };
 
-  const handleSignUp = () => {
-    navigate('/signup');
-    closeMenu();
-  };
-
   return (
-    <header className="relative m-1">
+    <header className="relative mr-15">
       <div className="container mx-auto my-8">
         <SearchForm />
       </div>
@@ -36,7 +31,7 @@ function Header() {
           <div className="bg-gray-700 text-white p-4 mt-2 mr-2 rounded-md w-40 absolute right-0 z-30">
             <ul>
               <li><Link to="/signin">Sign in</Link></li>
-              <li onClick={handleSignUp}>Sign up</li>
+              <li><Link to="/signup">Sign up</Link></li>
             </ul>
             <button
               className="text-white hover:text-gray-200 absolute top-2 right-2 flex items-center justify-center"
