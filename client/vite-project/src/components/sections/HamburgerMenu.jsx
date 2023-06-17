@@ -4,9 +4,11 @@ import { MdOutlineWatchLater } from 'react-icons/md';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BsHandThumbsUp, BsHandThumbsDown } from 'react-icons/bs';
 import youtubelogo from "../../assets/youtubelogo.png";
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function HamburgerMenu() {
   const [isOpen, setIsOpen] = useState(true);
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -33,7 +35,8 @@ function HamburgerMenu() {
       {isOpen && (
         <div className="bg-black text-white p-4 rounded-md">
           <ul>
-            <li className="p-2">Welcome back, user1</li>
+      
+            {/* <li className="p-2">Welcome back, { location.state.id}</li> */}
             <div>
               <li className="flex items-center p-2">
                 <div className="w-15 pr-5"><HiHome className="w-6 h-6" /></div>

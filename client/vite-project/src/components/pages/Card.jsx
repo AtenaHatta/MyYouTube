@@ -1,21 +1,21 @@
-import youtube from '../../assets/youtube.webp';
+import youtube from "../../assets/youtube.webp";
 import { VscAccount } from "react-icons/vsc";
 
-function Card() {
+function Card({data}) {
   return (
-    <div className="px-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div>
+      <img
+        className={`youtubelogo w-[${data.snippet.thumbnails.medium.width}px] h-[${data.snippet.thumbnails.medium.height}px] mr-1`}
+        src={data.snippet.thumbnails.medium.url}
+        alt="youtubelogo"
+      />
+      <div className="flex items-center justify-start">
+       
         <div>
-          <img className="youtubelogo w-[350px] h-[200px] mr-1" src={youtube} alt="youtubelogo" />
-          <div className="flex items-center justify-start">
-            <VscAccount className="w-10 h-10 text-2xl m-3 text-white" />
-            <div>
-              <h4>title</h4>
-              <p>user name</p>
-              <p>upload date</p>
-              <p>watch later</p>
-            </div>
-          </div>
+          <h4>{data.snippet.title}</h4>
+          <p>{data.snippet.channelTitle}</p>
+          <p>{data.snippet.publishTime}</p>
+          <p>watch later</p>
         </div>
       </div>
     </div>

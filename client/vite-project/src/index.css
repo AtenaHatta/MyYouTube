@@ -6,21 +6,4 @@ body{
     background-color: rgb(132, 109, 109);
 }
 
-/* header ----------------------------------------*/
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 30px;
-  }
-  
-  
-  .flexCenter > * {
-    margin-left: 8px;
-  }
-
-
-  .font-youtube {
-    font-family: 'Your Desired Font', sans-serif;
-  }
   
