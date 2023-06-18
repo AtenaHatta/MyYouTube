@@ -10,7 +10,6 @@ exports.getVideoByName = async (req, res) => {
         const response = await axios.get(url);
          res.status(200).json(response.data);
     } catch (error) {
-        console.log(error.message);
         res.status(500).json({ error: error.message });
     }
 }

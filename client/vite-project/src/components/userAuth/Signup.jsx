@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
+
 
 function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const navigate = useNavigate();
 
+  //send this data to backend
   const VITE_HOST = import.meta.env.VITE_HOST;
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -76,9 +76,16 @@ function SignUp() {
             >
               Sign up
             </button>
+            <div className="text-right mt-2">
+            <span className="text-sm text-gray-400 pr-2">Already have an account?</span>
+            <Link to="/signin" className="text-sm text-red-600 hover:text-red-500">
+              Sign in
+            </Link>
+            </div>
           </div>
         </form>
       </div>
+      <Link to="/" className="text-sm text-white hover:text-red-500 mt-5">back</Link>
     </div>
   );
 }

@@ -18,9 +18,9 @@ function Home() {
   return (
     <>
       <Header  />
-      <div className="flex justify-evenly">
+      <div className="mx-auto">
         <HamburgerMenu />
-        <div>
+        <div className="ml-[100px]">
           <Category />
           <CardWrapper search={searchData}/>
         </div>

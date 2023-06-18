@@ -3,75 +3,67 @@ import SearchForm from "../pages/SearchForm";
 import { VscAccount } from "react-icons/vsc";
 import { BiBell } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [user, setUser] = useState(false);
-  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
-
   const logout = () => {
-    localStorage.clear();
+    localStorage.clear(); //clear local storage
     setUser(false);
   };
 
   //get user from local storage
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
+    const loggedInUser = localStorage.getItem("user");//"user" is mongodb data
     if (loggedInUser) {
       setUser(true);
     }
   });
 
   return (
-    <header className="relative mr-15 flex justify-between align-center mb-3">
-      <div className="container mx-auto my-8">
-        <SearchForm />
+    <header className="relative mr-15 flex justify-between align-center mb-3 sm:mt-[60px] md:mt-[60px] lg:mt-0">
+    <div className="container mx-auto my-8">
+      <SearchForm />
+    </div>
+    <div className="flex justify-end items-center relative z-10 md:mr-10 xs:mr-0 xs:absolute xs:right-0 xs:top-0  sm:right-0 sm:top-[-30px]  md:right-5 md:top-8"> 
+      <BiBell className="w-5 h-5 text-white m-5" />
+      <VscAccount
+        className="w-5 h-5 text-white m-5 cursor-pointer relative z-20"
+        onClick={toggleMenu}
+      />
+      {isMenuOpen && (
+      <div className="bg-gray-700 text-white p-4  mr-2 rounded-md w-22 absolute top-12 z-30">
+        <ul>
+          {user ? (
+            <li>
+              <Link to="/" onClick={logout}>
+                Logout
+              </Link>
+            </li>
+          ) : (
+            <>
+              <li >
+                <Link to="/signin">Sign in</Link>
+              </li>
+              <li >
+                <Link to="/signup">Sign up</Link>
+              </li>
+            </>
+          )}
+        </ul>
+     
       </div>
-      <div className="flex justify-end relative z-10">
-        <BiBell className="w-5 h-5 text-white m-5" />
-        <VscAccount
-          className="w-5 h-5 text-white m-5 cursor-pointer relative z-20"
-          onClick={toggleMenu}
-        />
-        {isMenuOpen && (
-          <div className="bg-gray-700 text-white p-4 mt-2 mr-2 rounded-md w-40 absolute right-0 z-30">
-            <ul>
-              {user ? (
-                <li>
-                  <Link to="/" onClick={logout}>
-                    Logout
-                  </Link>
-                </li>
-              ) : (
-                <>
-                  <li>
-                    <Link to="/signin">Sign in</Link>
-                  </li>
-                  <li>
-                    <Link to="/signup">Sign up</Link>
-                  </li>
-                </>
-              )}
-            </ul>
-            <button
-              className="text-white hover:text-gray-200 absolute top-2 right-2 flex items-center justify-center"
-              onClick={closeMenu}
-            >
-              <GrFormClose style={{ color: "white" }} className="w-7 h-7" />
-            </button>
-          </div>
-        )}
-      </div>
-    </header>
+    )}
+  </div>
+</header>
+
+
   );
 }
 

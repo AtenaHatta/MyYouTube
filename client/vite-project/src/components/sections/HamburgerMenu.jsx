@@ -16,7 +16,7 @@ function HamburgerMenu() {
 
   return (
     <div className="w-200"> 
-      <div className="flex justify-between items-center absolute top-10 left-10"> 
+      <div className="flex justify-between items-center absolute md:top-10 md:left-10 xs:top-4 xs:left-4"> 
         <div className="ml-auto">
         <button
         className={`text-white hover:text-gray-200 focus:outline-none flex flex-col items-left justify-start`}
@@ -26,14 +26,14 @@ function HamburgerMenu() {
         </button>
        </div>
      <div className="flex items-center"> 
-       <img className="youtubelogo w-10 h-10 mr-1" src={youtubelogo} alt="youtubelogo" />
+       <img className="youtubelogo md:w-10 md:h-10 xs:w-12 xs:h-12 mr-1" src={youtubelogo} alt="youtubelogo" />
        <div className="hidden sm:block text-white text-1xl">MyYouTube</div> 
      </div>
      </div>
 
 
       {isOpen && (
-        <div className="bg-black text-white p-4 rounded-md">
+        <div className="bg-black text-white p-4 rounded-md absolute">
           <ul>
       
             {/* <li className="p-2">Welcome back, { location.state.id}</li> */}

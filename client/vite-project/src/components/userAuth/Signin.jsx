@@ -3,13 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  //send this data to backend
   const VITE_HOST = import.meta.env.VITE_HOST;
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -17,7 +18,7 @@ function SignIn() {
         email,
         password,
       }).then((res) => {
-
+        //put token in local storage
         localStorage.setItem("token", res.data.user);
         localStorage.setItem("user", JSON.stringify(res.data.user));
         navigate("/");
@@ -26,6 +27,7 @@ function SignIn() {
       toast.error(err.response.data.message);
     }
   };
+
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen m-3">
@@ -69,15 +71,14 @@ function SignIn() {
             </button>
           </div>
           <div className="text-right">
-            <Link
-              to="/signup"
-              className="text-sm text-red-600 hover:text-red-500"
-            >
+          <span className="text-sm text-gray-400 pr-2">Don't have an account?</span>
+            <Link to="/signup" className="text-sm text-red-600 hover:text-red-500">
               Sign up
             </Link>
           </div>
         </form>
       </div>
+      <Link to="/" className="text-sm text-white hover:text-red-500 mt-5">back</Link>
     </div>
   );
 }

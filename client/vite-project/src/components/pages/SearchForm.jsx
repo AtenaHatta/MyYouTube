@@ -15,11 +15,11 @@ function SearchForm() {
   };
 
   return (
-    <form className="flex items-center justify-center" onSubmit={handleSubmit}>
+    <form className="flex items-center justify-center xs:mt-[40px]" onSubmit={handleSubmit}>
       <label htmlFor="voice-search" className="sr-only">
         Search
       </label>
-      <div className="relative w-full max-w-md">
+      <div className="relative w-full max-w-md ">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <svg
             aria-hidden="true"
@@ -38,7 +38,8 @@ function SearchForm() {
           <input
             type="text"
             id="voice-search"
-            className="bg-black border border-gray-400 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-black border border-gray-400 text-black text-sm rounded-lg  focus:ring-red-500 focus:border-red-500 
+            block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
             placeholder="Search"
             value={form}
             onChange={handleChange}
