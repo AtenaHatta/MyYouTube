@@ -10,7 +10,7 @@ const newSchema = new mongoose.Schema(
     email: { type: String, required: true },
     password: { type: String, required: true },
     watchlist: { type: Array, required: false },
-
+    subscribed: { type: Array, required: false },
   },
   { collection: "users" }
 );
@@ -102,6 +102,64 @@ exports.postWatchList = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 }
+
+exports.checkWatchList = async (req, res) => {
+  const video = req.body;
+  const token = req.headers.authorization.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id);
+
+    if(user.watchlist && user.watchlist.some(watchlist => watchlist.videoId === video.videoId)) {
+      return res.status(200).json({ message: 'Video is already in favorites' })
+    }
+    return res.status(200).json({ message: 'Video is not in favorites' })
+    
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal server error" });
+    
+  }
+}
+
+exports.getWatchList = async (req, res) => {
+  const token = req.headers.authorization.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id);
+
+    return res.status(200).json({ watchlist: user.watchlist });
+    
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal server error" });
+    
+  }
+}
+
+
+exports.removeWatchList = async (req, res) => {
+  const video = req.body;
+  const token = req.headers.authorization.split(" ")[1];
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id);
+
+    // Remove youtube video from user's watchlist
+    user.watchlist = user.watchlist.filter(watchlist => watchlist.videoId !== video.videoId);
+    await user.save();
+
+    return res.status(200).json({ message: 'Video removed from watchlist' });
+    
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal server error" });
+    
+  }
+}
+
 
 
 

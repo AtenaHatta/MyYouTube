@@ -10,11 +10,12 @@ function CardWrapper({ search }) {
   const fetchData = async () => {
     try {
       const response = await fetch(url);
+      console.log(response.data);
 
-      if (!response.ok) {
-        const message = `An error has occured: ${response.status}`;
-        throw new Error(message);
-      }
+      // if (!response.ok) {
+      //   const message = `An error has occured: ${response.status}`;
+      //   throw new Error(message);
+      // }
 
       const data = await response.json();
       setData(data.items);

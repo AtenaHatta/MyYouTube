@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
-import { handleSaveWatchLater } from "./card.config";
 import { toast } from "react-toastify";
 
-function Card({ data }) {
+function FavCard({ data, setRender }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [watchLater, setWatchLater] = useState(false);
+  const [watchLater, setWatchLater] = useState(true);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -18,30 +17,30 @@ function Card({ data }) {
   const token = localStorage.getItem("token");
   const url = import.meta.env.VITE_HOST;
 
-  const checkWatchList = async () => {
-    const body = {
-      videoId: data.id.videoId,
-    };
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify(body),
-    };
+//   const checkWatchList = async () => {
+//     const body = {
+//       videoId: data.id.videoId,
+//     };
+//     const options = {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${token}`,
+//         "Access-Control-Allow-Origin": "*",
+//       },
+//       body: JSON.stringify(body),
+//     };
 
-    const response = await fetch(`${url}/user/checkWatchList`, options);
-    const result = await response.json();
-    console.log(result);
-    if (result.message === "Video is already in favorites") {
-      setWatchLater(true);
-    }
-  };
+//     const response = await fetch(`${url}/user/checkWatchList`, options);
+//     const result = await response.json();
+//     console.log(result);
+//     if (result.message === "Video is already in favorites") {
+//       setWatchLater(true);
+//     }
+//   };
   const removeFromWachList = async () => {
     const body = {
-      videoId: data.id.videoId,
+      videoId: data.videoId,
     };
     const options = {
       method: "DELETE",
@@ -57,29 +56,29 @@ function Card({ data }) {
     const result = await response.json();
 
     if (result.message === "Video removed from watchlist") {
-      setWatchLater(false);
       toast.success("Video removed from watchlist");
+      setIsOpen(false);
+        setRender((prev) => !prev);
     }
   };
 
-  useEffect(() => {
-    checkWatchList();
-  }, []);
+//   useEffect(() => {
+//     checkWatchList();
+//   }, []);
   // --------------------------------------------
 
   return (
     <div>
       <div onClick={handleOpen}>
         <img
-          className={`w-80 h-45 youtubelogo w-[${data.snippet.thumbnails.medium.width}px] h-[${data.snippet.thumbnails.medium.height}px] mr-1 rounded hover:rounded-none`}
-          src={data.snippet.thumbnails.medium.url}
+          className={`w-80 h-45 youtubelogo w-[${400}px] h-[${400}px] mr-1 rounded hover:rounded-none`}
+          src={data.thumbnail}
           alt="youtubelogo"
         />
         <div className="flex items-center justify-start">
           <div>
-            <h3 className="text-lg">{data.snippet.title}</h3>
-            <p>{data.snippet.channelTitle}</p>
-            <p>{data.snippet.publishTime}</p>
+            <h3 className="text-lg">{data.title}</h3>
+           
             <p>watch later</p>
           </div>
         </div>
@@ -110,14 +109,14 @@ function Card({ data }) {
                   <iframe
                     width="853"
                     height="480"
-                    src={`https://www.youtube.com/embed/${data.id.videoId}`}
+                    src={`https://www.youtube.com/embed/${data.videoId}`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     title="Embedded youtube"
                   />
                 </div>
-                <h1 className="text-lg">{data.snippet.title}</h1>
-                <p className="text-sm">{data.snippet.description}</p>
+                <h1 className="text-lg">{data.title}</h1>
+                <p className="text-sm">{data.description}</p>
               </div>
               <div className="bg-black-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
@@ -127,26 +126,21 @@ function Card({ data }) {
                 >
                   Close
                 </button>
-                {token ? (
-                  !watchLater ? (
-                    <button
-                      type="button"
-                      onClick={() => handleSaveWatchLater(data, setWatchLater)}
-                      className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                    >
-                      Save to watch later
-                    </button>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={removeFromWachList}
-                      className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                    >
-                      Remove from watch later
-                    </button>
-                  )
+                {!watchLater ? (
+                  <button
+                    type="button"
+                    className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                  >
+                    Save to watch later
+                  </button>
                 ) : (
-                  null
+                  <button
+                    type="button"
+                    onClick={removeFromWachList}
+                    className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                  >
+                    Remove from watch later
+                  </button>
                 )}
               </div>
             </div>
@@ -157,4 +151,4 @@ function Card({ data }) {
   );
 }
 
-export default Card;
+export default FavCard;
