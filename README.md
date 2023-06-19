@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/AtenaHatta/MyYoutube">
-    <img src="myyoutube_logo.png" width="30%">
+    <img src="myyoutube_logo.png" width="45%">
   </a>
 </p>
 
