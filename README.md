@@ -1,13 +1,12 @@
-# Youtube-react
+<p align="center">
   <a href="https://github.com/AtenaHatta/MyYoutube">
-        <img src="myyoutube_logo.png">
+    <img src="myyoutube_logo.png" width="40%">
   </a>
-
-My Youtube list built by React.js
+</p>
 
 ## Demo Link
 
-- [My Youtube list](https://portfolio-react-liard-three.vercel.app/) 
+- [Demo page](https://portfolio-react-liard-three.vercel.app/) 
 
 ![The top image](./client/vite-project/src/assets/myyoutube_img.png)
 
