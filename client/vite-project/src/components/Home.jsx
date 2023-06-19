@@ -20,7 +20,7 @@ function Home() {
       <Header  />
       <div className="mx-auto">
         <HamburgerMenu />
-        <div className="ml-[100px]">
+        <div className="ml-[160px]">
           <Category />
           <CardWrapper search={searchData}/>
         </div>

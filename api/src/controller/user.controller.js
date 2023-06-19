@@ -4,13 +4,13 @@ connectToMongo();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-
 //schema
 const newSchema = new mongoose.Schema(
   {
     email: { type: String, required: true },
     password: { type: String, required: true },
     watchlist: { type: Array, required: false },
+
   },
   { collection: "users" }
 );
@@ -45,6 +45,7 @@ exports.postUser = async (req, res) => {
   }
 };
 
+
 //Sign in --------------------------------------------
 exports.getUser = async (req, res) => {
     const { email, password } = req.body;
@@ -70,3 +71,37 @@ exports.getUser = async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 }
+
+
+// Watch later--------------------------------------------
+exports.postWatchList = async (req, res) => {
+
+  console.log(req.body);
+  const video = req.body;
+  const token = req.headers.authorization.split(" ")[1]; //token is from axios.post in Card.jsx
+  const decoded = jwt.verify(token, process.env.JWT_SECRET); //decoding token
+
+  try{
+    const user = await User.findById(decoded.id);
+   
+
+     // Check if the youtube video is already in watchlater
+    if(user.watchlist && user.watchlist.some(watchlist => watchlist.videoId === video.videoId)) {
+      return res.status(400).json({ message: 'Video is already in favorites' })
+    }
+
+    // Add youtube video to user's watchlist
+    user.watchlist = [...user.watchlist, video];
+    await user.save();
+
+    return res.status(200).json({ message: 'Video added to favorites' });
+
+
+  }catch(error){
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+
+

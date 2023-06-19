@@ -33,7 +33,7 @@ function HamburgerMenu() {
 
 
       {isOpen && (
-        <div className="bg-black text-white p-4 rounded-md absolute">
+        <div className="bg-black text-white p-1 rounded-md absolute">
           <ul>
       
             {/* <li className="p-2">Welcome back, { location.state.id}</li> */}
@@ -49,7 +49,7 @@ function HamburgerMenu() {
                 <a href="#" className="align-middle">Subscribe</a>
               </li>
             </div>
-            <div>
+            {/* <div>
               <li className="flex items-center p-2">
                 <div className="w-15 pr-5"><BsHandThumbsUp className="w-6 h-6" /></div>
                 <a href="#" className="align-middle">Good</a>
@@ -60,7 +60,7 @@ function HamburgerMenu() {
                 <div className="w-15 pr-5"><BsHandThumbsDown className="w-6 h-6" /></div>
                 <a href="#" className="align-middle">Bad</a>
               </li>
-            </div>
+            </div> */}
             <div>
               <li className="flex items-center p-2">
                 <div className="w-15 pr-5"><MdOutlineWatchLater className="w-6 h-6" /></div>
