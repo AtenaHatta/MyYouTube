@@ -4,8 +4,6 @@
   </a>
 </p>
 
-My Youtube list built by React.js
-
 ## Demo Link
 
 - [My Youtube list](https://portfolio-react-liard-three.vercel.app/) 
