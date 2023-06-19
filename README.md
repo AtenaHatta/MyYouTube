@@ -6,7 +6,7 @@ My Youtube list built by React.js
 
 - [My Youtube list](https://portfolio-react-liard-three.vercel.app/) 
 
-![The top image](./src/assets/img_portfolio.png)
+![The top image](./client/vite-project/src/assets/myyoutube_img.png)
 
 ## Built With
 
