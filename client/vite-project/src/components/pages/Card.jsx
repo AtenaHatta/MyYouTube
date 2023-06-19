@@ -78,9 +78,9 @@ function Card({ data }) {
         <div className="flex items-center justify-start">
           <div>
             <h3 className="text-lg">{data.snippet.title}</h3>
-            <p>{data.snippet.channelTitle}</p>
-            <p>{data.snippet.publishTime}</p>
-            <p>watch later</p>
+            <p className='text-gray-400'>{data.snippet.channelTitle}</p>
+            {/* <p className='text-gray-400'>{data.snippet.publishTime}</p> */}
+            <p className='text-gray-400'>watch later</p>
           </div>
         </div>
       </div>

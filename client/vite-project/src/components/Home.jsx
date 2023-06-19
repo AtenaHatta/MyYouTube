@@ -11,7 +11,7 @@ function Home() {
   const { searchPARAMS } = useParams();
   const [showFav, setShowFav] = useState(false);
 
-  const [searchData, setSearch] = useState(searchPARAMS || "Travel");
+  const [searchData, setSearch] = useState(searchPARAMS || "beauty");
 
   useEffect(() => {
     setSearch(searchPARAMS || "Travel");
@@ -22,7 +22,7 @@ function Home() {
       <Header />
       <div className="mx-auto">
         <HamburgerMenu setShowFav={setShowFav} />
-        <div className="ml-[100px]">
+        <div className="ml-[150px]">
           <Category />
 
           {showFav ? <FavWrapper /> : <CardWrapper search={searchData} />}

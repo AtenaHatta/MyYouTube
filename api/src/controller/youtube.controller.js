@@ -3,8 +3,8 @@ const axios = require('axios');
 exports.getVideoByName = async (req, res) => {
     const { inputvalue } = req.params;
  
-    const apikey = process.env.YOUTUBE_APIKEYG;
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${inputvalue}&key=${apikey}`;
+    const apikey = process.env.YOUTUBE_APIKEY;
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${inputvalue}&key=${apikey}`;
 
     try {
         const response = await axios.get(url);
