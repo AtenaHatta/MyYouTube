@@ -6,7 +6,7 @@
 
 ## Demo Link
 
-- [My Youtube list](https://portfolio-react-liard-three.vercel.app/) 
+- [Demo page](https://portfolio-react-liard-three.vercel.app/) 
 
 ![The top image](./client/vite-project/src/assets/myyoutube_img.png)
 
