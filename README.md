@@ -1,7 +1,8 @@
-# Youtube-react
+<p align="center">
   <a href="https://github.com/AtenaHatta/MyYoutube">
-        <img src="myyoutube_logo.png" width="20%">
+    <img src="myyoutube_logo.png" width="30%">
   </a>
+</p>
 
 My Youtube list built by React.js
 
