@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 
 app.use('/user', userRouter)
 
-app.use("/youtube", youtubeRouter)
+// app.use("/youtube", youtubeRouter)
 
 app.listen(process.env.PORT, () => {
   console.log(`Example app listening at http://localhost:${process.env.PORT}`);

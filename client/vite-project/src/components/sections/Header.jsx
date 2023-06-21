@@ -27,7 +27,7 @@ function Header() {
   });
 
   return (
-    <header className="relative mr-15 flex justify-between align-center mb-3 sm:mt-[60px] md:mt-[60px] lg:mt-0">
+    <header className="relative mr-15 flex justify-between align-center mb-1 sm:mt-[60px] lg:mt-0">
     <div className="container mx-auto my-8">
       <SearchForm />
     </div>

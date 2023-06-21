@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { handleSaveWatchLater } from "./card.config";
 import { toast } from "react-toastify";
+import { formatISO9075 } from 'date-fns';
+
 
 function Card({ data }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +15,7 @@ function Card({ data }) {
   const handleClose = () => {
     setIsOpen(false);
   };
-
+  
   //watch later -------------------------------
   const token = localStorage.getItem("token");
   const url = import.meta.env.VITE_HOST;
@@ -69,18 +71,19 @@ function Card({ data }) {
 
   return (
     <div>
-      <div onClick={handleOpen}>
+      <div onClick={handleOpen} className="cursor-pointer">
         <img
-          className={`w-80 h-45 youtubelogo w-[${data.snippet.thumbnails.medium.width}px] h-[${data.snippet.thumbnails.medium.height}px] mr-1 rounded hover:rounded-none`}
+        className={`youtubelogo w-[400px] h-[100%] mr-1 rounded hover:rounded-none `}
           src={data.snippet.thumbnails.medium.url}
           alt="youtubelogo"
+          width={400}
+          height={200}
         />
         <div className="flex items-center justify-start">
           <div>
             <h3 className="text-lg">{data.snippet.title}</h3>
             <p className='text-gray-400'>{data.snippet.channelTitle}</p>
-            {/* <p className='text-gray-400'>{data.snippet.publishTime}</p> */}
-            <p className='text-gray-400'>watch later</p>
+            <p className='text-gray-400 text-sm'>{formatISO9075(new Date(data.snippet.publishTime))}</p>
           </div>
         </div>
       </div>

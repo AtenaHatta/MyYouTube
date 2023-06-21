@@ -24,7 +24,6 @@ function Home() {
         <HamburgerMenu setShowFav={setShowFav} />
         <div className="ml-[150px]">
           <Category />
-
           {showFav ? <FavWrapper /> : <CardWrapper search={searchData} />}
         </div>
       </div>
