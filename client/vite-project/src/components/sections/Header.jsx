@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import SearchForm from "../pages/SearchForm";
 import { VscAccount } from "react-icons/vsc";
 import { BiBell } from "react-icons/bi";
-import { GrFormClose } from "react-icons/gr";
 import { Link } from "react-router-dom";
 
 function Header() {

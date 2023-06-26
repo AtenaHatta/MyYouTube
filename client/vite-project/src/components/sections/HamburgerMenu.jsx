@@ -55,7 +55,7 @@ function HamburgerMenu({ setShowFav }) {
       </div>
 
       {isOpen && (
-        <div className="bg-black text-white p-3 rounded-md absolute">
+        <div className= "sm:bg-white sm:text-black md:bg-black md:text-white p-3 rounded-md absolute">
           <ul>
             {/* <li className="p-2">Welcome back, { location.state.id}</li> */}
             <div>

@@ -1,7 +1,7 @@
-import FavCard from "../pages/FavCard";
+import WatchLaterCard from "../pages/watchLaterCard";
 import React, { useEffect, useState } from "react";
 
-function FavWrapper() {
+function WatchLaterWrapper() {
   const [data, setData] = useState([]);
   const [render , setRender] = useState(false);
 
@@ -38,7 +38,7 @@ function FavWrapper() {
           {data?.length > 0 &&
             data.map((item, index) => (
               <React.Fragment key={index}>
-                <FavCard data={item} setRender={setRender} />
+                <WatchLaterCard data={item} setRender={setRender} />
               </React.Fragment>
             ))}
         </div>
@@ -47,4 +47,4 @@ function FavWrapper() {
   );
 }
 
-export default FavWrapper;
+export default WatchLaterWrapper;

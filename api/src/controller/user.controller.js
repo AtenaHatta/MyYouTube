@@ -102,6 +102,33 @@ exports.postWatchList = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 }
+exports.postSubscribeList = async (req, res) => {
+  console.log(req.body);
+  const chanel = req.body;
+  const token = req.headers.authorization.split(" ")[1]; //token is from axios.post in Card.jsx
+  const decoded = jwt.verify(token, process.env.JWT_SECRET); //decoding token
+
+  try{
+    const user = await User.findById(decoded.id);
+     // Check if the youtube video is already in watchlater
+
+     if(user.subscribed && user.subscribed.some(subscribed => subscribed.channelID === chanel.channelID)) {
+
+      return res.status(400).json({ message: 'You are already subscribed' })
+    }
+
+    // Add youtube video to user's watchlist
+    user.subscribed = [...user.subscribed, chanel];
+    await user.save();
+
+    return res.status(200).json({ message: 'You are now subscribed' });
+
+
+  }catch(error){
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
 
 exports.checkWatchList = async (req, res) => {
   const video = req.body;
@@ -115,6 +142,25 @@ exports.checkWatchList = async (req, res) => {
       return res.status(200).json({ message: 'Video is already in favorites' })
     }
     return res.status(200).json({ message: 'Video is not in favorites' })
+    
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal server error" });
+    
+  }
+}
+exports.checkSubribeList = async (req, res) => {
+  const chanel = req.body;
+  const token = req.headers.authorization.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id);
+
+    if(user.subscribed && user.subscribed.some(subscribed => subscribed.channelID === chanel.chanelID)) {
+      return res.status(200).json({ message: 'You are already subscribed' })
+    }
+    return res.status(200).json({ message: 'You are not subscribed' })
     
   } catch (err) {
     console.log(err);

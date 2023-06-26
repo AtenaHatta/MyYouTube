@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
-import { handleSaveWatchLater } from "./card.config";
+import { handleSaveWatchLater, handleSaveToSubscribeList } from "./card.config";
 import { toast } from "react-toastify";
 import { formatISO9075 } from 'date-fns';
 
@@ -8,6 +8,8 @@ import { formatISO9075 } from 'date-fns';
 function Card({ data }) {
   const [isOpen, setIsOpen] = useState(false);
   const [watchLater, setWatchLater] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
+
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -36,11 +38,38 @@ function Card({ data }) {
 
     const response = await fetch(`${url}/user/checkWatchList`, options);
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
     if (result.message === "Video is already in favorites") {
       setWatchLater(true);
     }
   };
+  const checkSubribedList = async () => {
+    const body = {
+      chanelID: data.snippet.channelId,
+    };
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(body),
+    };
+
+    const response = await fetch(`${url}/user/checkSubribeList`, options);
+    const result = await response.json();
+    console.log(result);
+    // console.log(result);
+    if (result.message === "You are already subscribed") {
+      setSubscribed(true);
+      console.log("FUCK YOUUUUU");
+    }
+  };
+
+
+
+
   const removeFromWachList = async () => {
     const body = {
       videoId: data.id.videoId,
@@ -65,8 +94,13 @@ function Card({ data }) {
   };
 
   useEffect(() => {
-    checkWatchList();
+    const checkData = async () => {
+      await checkWatchList();
+      await checkSubribedList();
+    };
+    checkData();
   }, []);
+  
   // --------------------------------------------
 
   return (
@@ -146,6 +180,27 @@ function Card({ data }) {
                       className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                     >
                       Remove from watch later
+                    </button>
+                  )
+                ) : (
+                  null
+                )}
+                {token ? (
+                  !subscribed ? (
+                    <button
+                      type="button"
+                      onClick={() => handleSaveToSubscribeList(data, setSubscribed)}
+                      className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    >
+                      Subscribe
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={removeFromWachList}
+                      className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    >
+                      Unsubscribe
                     </button>
                   )
                 ) : (

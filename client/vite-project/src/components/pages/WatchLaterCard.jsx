@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 
-function FavCard({ data, setRender }) {
+function WatchLaterCard({ data, setRender }) {
   const [isOpen, setIsOpen] = useState(false);
   const [watchLater, setWatchLater] = useState(true);
+  const [subscribe, setSubscribe] = useState(true);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -13,31 +14,33 @@ function FavCard({ data, setRender }) {
     setIsOpen(false);
   };
 
+  console.log(data);
+
   //watch later -------------------------------
   const token = localStorage.getItem("token");
   const url = import.meta.env.VITE_HOST;
 
-//   const checkWatchList = async () => {
-//     const body = {
-//       videoId: data.id.videoId,
-//     };
-//     const options = {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${token}`,
-//         "Access-Control-Allow-Origin": "*",
-//       },
-//       body: JSON.stringify(body),
-//     };
+  // const checkWatchList = async () => {
+  //   const body = {
+  //     videoId: data.id.videoId,
+  //   };
+  //   const options = {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${token}`,
+  //       "Access-Control-Allow-Origin": "*",
+  //     },
+  //     body: JSON.stringify(body),
+  //   };
 
-//     const response = await fetch(`${url}/user/checkWatchList`, options);
-//     const result = await response.json();
-//     console.log(result);
-//     if (result.message === "Video is already in favorites") {
-//       setWatchLater(true);
-//     }
-//   };
+  //   const response = await fetch(`${url}/user/checkWatchList`, options);
+  //   const result = await response.json();
+  //   console.log(result);
+  //   if (result.message === "Video is already in favorites") {
+  //     setWatchLater(true);
+  //   }
+  // };
   const removeFromWachList = async () => {
     const body = {
       videoId: data.videoId,
@@ -61,11 +64,34 @@ function FavCard({ data, setRender }) {
         setRender((prev) => !prev);
     }
   };
+  const removeFromSubscribeList = async () => {
+    const body = {
+      channelId: data.ßchannelId,
+    };
+    const options = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(body),
+    };
 
-//   useEffect(() => {
-//     checkWatchList();
-//   }, []);
-  // --------------------------------------------
+    const response = await fetch(`${url}/user/checkWatchList`, options);
+    const result = await response.json();
+
+    if (result.message === "Video removed from watchlist") {
+      toast.success("Video removed from watchlist");
+      setIsOpen(false);
+        setRender((prev) => !prev);
+    }
+  };
+
+
+  // useEffect(() => {
+  //   checkWatchList();
+  // }, []);
 
   return (
     <div>
@@ -126,6 +152,22 @@ function FavCard({ data, setRender }) {
                 >
                   Close
                 </button>
+                {!subscribe ? (
+                  <button
+                    type="button"
+                    className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                  >
+                    Subscribe
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={removeFromSubscribeList}
+                    className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                  >
+                    Unsubscribe
+                  </button>
+                )}
                 {!watchLater ? (
                   <button
                     type="button"
@@ -151,4 +193,4 @@ function FavCard({ data, setRender }) {
   );
 }
 
-export default FavCard;
+export default WatchLaterCard;

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 function CardWrapper({ search }) {
   const [data, setData] = useState([]);
+  console.log(data);
 
   const host = import.meta.env.VITE_HOST;
   const url = `${host}/youtube/search/${search}`;

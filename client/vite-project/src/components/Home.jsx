@@ -3,7 +3,7 @@ import Header from "./sections/Header";
 import Category from "./sections/Category";
 import HamburgerMenu from "./sections/HamburgerMenu";
 import CardWrapper from "./sections/CardWrapper";
-import FavWrapper from "./sections/FavWrapper";
+import WatchLaterWrapper from "./sections/WatchLaterWrapper";
 
 import { useParams } from "react-router-dom";
 
@@ -22,9 +22,9 @@ function Home() {
       <Header />
       <div className="mx-auto">
         <HamburgerMenu setShowFav={setShowFav} />
-        <div className="ml-[150px]">
+        <div className="md:ml-[150px] sm:ml-0">
           <Category />
-          {showFav ? <FavWrapper /> : <CardWrapper search={searchData} />}
+          {showFav ? <WatchLaterWrapper /> : <CardWrapper search={searchData} />}
         </div>
       </div>
     </>

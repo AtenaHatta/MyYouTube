@@ -3,8 +3,10 @@ const {
   postUser,
   getUser,
   postWatchList,
+  postSubscribeList,
   checkWatchList,
   removeWatchList,
+  checkSubribeList,
   getWatchList,
 } = require("../controller/user.controller");
 
@@ -13,9 +15,14 @@ router.post("/signup", postUser); //when user go to /signup, run postUser functi
 router.post("/signin", getUser); //when user go to /signin, run getUser function
 
 router.post("/watchlist", postWatchList);
+router.post("/subribelist", postSubscribeList);
 
 router
   .post("/checkWatchList", checkWatchList)
+  .delete("/checkWatchList", removeWatchList);
+  
+router
+  .post("/checkSubribeList", checkSubribeList)
   .delete("/checkWatchList", removeWatchList);
 
 router.get("/watchlistPage", getWatchList);
