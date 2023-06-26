@@ -1,4 +1,4 @@
-import WatchLaterCard from "../pages/watchLaterCard";
+import WatchLaterCard from "../pages/WatchLaterCard";
 import React, { useEffect, useState } from "react";
 
 function WatchLaterWrapper() {
