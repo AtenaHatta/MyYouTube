@@ -2,7 +2,7 @@
   <a href="https://github.com/AtenaHatta/MyYoutube">
     <img src="myyoutube_logo.png" width="40%">
   </a>
-</p>
+</p> 
 
 ## Demo Link
 
@@ -22,7 +22,7 @@
 
 ## Features
 
-- By using a search form, you can search for your favorite videos and display actual YouTube videos using the Google YouTube API. Furthermore, by signing in, you can add videos to your favorites, like or dislike them, and save them for later viewing. These actions do not affect the actual YouTube platform and allow you to save them as personal notes.
+- By using a search form, you can search for your favorite videos and display actual YouTube videos using the Google YouTube API. Furthermore, by signing in, you can add videos to your 'subscribe' and save them for later viewing 'watch later'. These actions do not affect the actual YouTube platform and allow you to save them as personal notes.
 
 ## Challenging Part
 
