@@ -1,8 +1,24 @@
 <p align="center">
   <a href="https://github.com/AtenaHatta/MyYoutube">
-    <img src="myyoutube_logo.png" width="40%">
+    <img src="https://ik.imagekit.io/atcan/youtubeReadme01.png?updatedAt=1691378534811" width="750" height="100%/">
   </a>
 </p> 
+
+<h1 align="center" id="title">MovieSearch</h1>
+
+<p align="center"><img src="https://ik.imagekit.io/riviaa/HomePage.png?updatedAt=1687148836686" alt="project-image"></p>
+
+<p id="description">Welcome to my movie application! It's a place where movie lovers can discover new films delve into details about each one and save their favorites to return to later.</p>
+
+<h2>🚀 Demo</h2>
+
+[https://movie-search-client-lac.vercel.app/](https://movie-search-client-lac.vercel.app/)
+
+<h2>Project Screenshots:</h2>
+
+<img src="https://ik.imagekit.io/riviaa/image.png?updatedAt=1687147260649" alt="project-screenshot" width="750" height="100%/">
+<img src="https://ik.imagekit.io/riviaa/Screenshot%202023-08-04%20at%202.16.04%20PM.png?updatedAt=1691183858959" alt="project-screenshot" width="750" height="100%/">
+
 
 ## Demo Link
 
