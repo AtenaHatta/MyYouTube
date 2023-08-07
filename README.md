@@ -2,16 +2,12 @@
     <img src="https://ik.imagekit.io/atcan/youtubeReadme01.png?updatedAt=1691378534811" width="750" height="100%/">
 </p> 
 
-
-
-<p align="center"><img src="https://ik.imagekit.io/riviaa/HomePage.png?updatedAt=1687148836686" alt="project-image"></p>
-
-<p id="description">"In the MyYouTube app, we use the actual YouTube API to display videos. By logging in, you can also use features like 'subscribe' and 'watch later' to save your favorites.</p>
+<p id="description">In the MyYouTube app, we use the actual YouTube API to display videos. By logging in, you can also use features like 'subscribe' and 'watch later' to save your favorites.</p>
 
 <h2>🚀 Demo</h2>
 https://my-you-tube-client.vercel.app/
-
-
+<br>
+<br>
 <img src="https://ik.imagekit.io/atcan/youtubeReadme02.png?updatedAt=1691378368468" alt="project-screenshot" width="750" height="100%/">
 <img src="https://ik.imagekit.io/atcan/youtubeReadme03.png?updatedAt=1691378366777" alt="project-screenshot" width="750" height="100%/">
 
@@ -25,7 +21,7 @@ https://my-you-tube-client.vercel.app/
 
 <h2>🛠️ Installation Steps:</h2>
 
-<p>1. cd client</p>
+<p>1. cd api</p>
 
 ```
 npm i & npm run dev
