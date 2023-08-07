@@ -1,10 +1,9 @@
 <p align="center">
-    https://ik.imagekit.io/atcan/youtubeReadmeLogo.png?updatedAt=1691383187840
-    <img src="https://ik.imagekit.io/atcan/youtubeReadmeLogo.png?updatedAt=1691383187840" width="750" height="100%/">
+    <img src="https://ik.imagekit.io/atcan/youtubeReadmeLogo.png?updatedAt=1691383187840" width="450" height="100%/">
     <img src="https://ik.imagekit.io/atcan/youtubeReadme01.png?updatedAt=1691378534811" width="750" height="100%/">
 </p> 
 
-<p id="description">In the MyYouTube app, we use the actual YouTube API to display videos. By logging in, you can also use features like 'subscribe' and 'watch later' to save your favorites.</p>
+<p id="description">The actual YouTube API is used to display videos in this application. By logging in, users can access features such as 'subscribe' and 'watch later', enabling them to save their favorite videos."</p>
 
 <h2>🚀 Demo</h2>
 https://my-you-tube-client.vercel.app/
@@ -14,12 +13,10 @@ https://my-you-tube-client.vercel.app/
 <img src="https://ik.imagekit.io/atcan/youtubeReadme03.png?updatedAt=1691378366777" alt="project-screenshot" width="750" height="100%/">
 
 <h2>🧐 Features</h2>
-*  Movie Search: Just type in the name of a movie you're curious about and the app will pull up all the details you need.
-*  Favorites List: Found a movie you love? Add it to your favorites list so you can easily find it again later.
-*  Commenting System: Have thoughts about a movie? Leave a comment on it and see what others have said. Engage with a community of movie lovers.
-*  Responsive Design: Whether you're on your computer, tablet, or phone, the app will adjust to fit your screen perfectly. No more frustrating 
-   scrolling or zooming.
-
+・ YouTube Search: Enter the name of the YouTube video you're searching for. The videos corresponding to your search will be displayed for you to select from.<br>
+・ Favorites List: After signing up, you can add videos to your favorite list, 'Subscribe' or 'Watch later'.<br>
+・ Category: If you're unsure of what to watch, simply click on a category located under the search bar. Videos will then be displayed based on the category you select.<br>
+・ Responsive Design: Regardless of whether you're using a computer, tablet, or phone, the app is designed to adjust and fit your screen perfectly.<br>
 
 <h2>🛠️ Installation Steps:</h2>
 
@@ -41,8 +38,8 @@ npm i & npm run dev
 
 Technologies used in the project:
 
-*   MongoDB
-*   Express
 *   React.js
 *   Node.js
+*   MongoDB
+*   Express
 *   TailwindCSS
