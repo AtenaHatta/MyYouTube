@@ -1,4 +1,6 @@
 <p align="center">
+    https://ik.imagekit.io/atcan/youtubeReadmeLogo.png?updatedAt=1691383187840
+    <img src="https://ik.imagekit.io/atcan/youtubeReadmeLogo.png?updatedAt=1691383187840" width="750" height="100%/">
     <img src="https://ik.imagekit.io/atcan/youtubeReadme01.png?updatedAt=1691378534811" width="750" height="100%/">
 </p> 
 
