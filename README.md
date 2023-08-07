@@ -8,8 +8,10 @@
 
 - [Demo page](https://my-you-tube-client.vercel.app/) 
 
-![The top image](./client/vite-project/src/assets/myyoutube_img.png)
+![The top image](https://ik.imagekit.io/atcan/youtubeReadme01.png?updatedAt=1691378534811)
 ![The top image](https://ik.imagekit.io/atcan/youtubeReadme02.png?updatedAt=1691378368468)
+![The top image](https://ik.imagekit.io/atcan/youtubeReadme03.png?updatedAt=1691378366777)
+
 
 ## Built With
 
