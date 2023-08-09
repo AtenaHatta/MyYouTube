@@ -15,12 +15,14 @@ https://my-you-tube-client.vercel.app/
 <h2>🧐 Features</h2>
 🔍 YouTube Search: <br>
 　　Enter the name of the YouTube video you're searching for.<br>
-　　The videos corresponding to your search will be displayed for you to select from.<br>
-🩷 Favorites List: <br>
-　　After signing up, you can add videos to your favorite list, <b>'Subscribe'</b> or <b>'Watch later'</b>.<br>
+　　The videos corresponding to your search will be displayed for you to select from.<br><br>
+🩷 Subscribe: <br>
+　　After signing up, you can add your favorite channel to your 'Subscribe'.<br><br>
+🕰️ Watch later: <br>
+　　After signing up, you can add your favorite videos to your 'Watch later'.<br><br>
 📕 Category:<br>
 　　If you're unsure of what to watch, simply click on a category located under the search bar. <br>
-　　Videos will then be displayed based on the category you select.<br>
+　　Videos will then be displayed based on the category you select.<br><br>
 📱 Responsive Design: <br>
 　　Regardless of whether you're using a computer, tablet, or phone, <br>
 　　the app is designed to adjust and fit your screen perfectly.<br>
