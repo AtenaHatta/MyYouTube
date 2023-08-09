@@ -3,7 +3,8 @@
     <img src="https://ik.imagekit.io/atcan/youtubeReadme01.png?updatedAt=1691378534811" width="750" height="100%/">
 </p> 
 
-<p id="description">The actual YouTube API is used to display videos in this application. By logging in, users can access features such as 'subscribe' and 'watch later', enabling them to save their favorite videos.</p>
+<p id="description">The actual YouTube API is used to display videos in this application. <br>
+By logging in, users can access features such as 'subscribe' and 'watch later', enabling them to save their favorite videos.</p>
 
 <h2>🚀 Demo</h2>
 https://my-you-tube-client.vercel.app/
