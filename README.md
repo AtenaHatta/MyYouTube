@@ -13,10 +13,17 @@ https://my-you-tube-client.vercel.app/
 <img src="https://ik.imagekit.io/atcan/youtubeReadme03.png?updatedAt=1691378366777" alt="project-screenshot" width="750" height="100%/">
 
 <h2>🧐 Features</h2>
-・ YouTube Search: Enter the name of the YouTube video you're searching for. The videos corresponding to your search will be displayed for you to select from.<br>
-・ Favorites List: After signing up, you can add videos to your favorite list, 'Subscribe' or 'Watch later'.<br>
-・ Category: If you're unsure of what to watch, simply click on a category located under the search bar. Videos will then be displayed based on the category you select.<br>
-・ Responsive Design: Regardless of whether you're using a computer, tablet, or phone, the app is designed to adjust and fit your screen perfectly.<br>
+🔍 YouTube Search: <br>
+　　Enter the name of the YouTube video you're searching for.<br>
+　　The videos corresponding to your search will be displayed for you to select from.<br>
+🩷 Favorites List: <br>
+　　After signing up, you can add videos to your favorite list, <b>'Subscribe'</b> or <b>'Watch later'</b>.<br>
+📕 Category:<br>
+　　If you're unsure of what to watch, simply click on a category located under the search bar. <br>
+　　Videos will then be displayed based on the category you select.<br>
+📱 Responsive Design: <br>
+　　Regardless of whether you're using a computer, tablet, or phone, <br>
+　　the app is designed to adjust and fit your screen perfectly.<br>
 
 <h2>🛠️ Installation Steps:</h2>
 
