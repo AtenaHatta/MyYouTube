@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import SearchForm from "../pages/SearchForm";
+import { useState, useEffect } from "react";
+import SearchForm from "./SearchForm";
 import { VscAccount } from "react-icons/vsc";
 import { BiBell } from "react-icons/bi";
 import { Link } from "react-router-dom";

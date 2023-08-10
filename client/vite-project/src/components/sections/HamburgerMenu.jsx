@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { HiMenu, HiHome } from "react-icons/hi";
 import { MdOutlineWatchLater } from "react-icons/md";
 import { AiOutlineHeart } from "react-icons/ai";
 import youtubelogo from "../../assets/youtubelogo.png";
 
-function HamburgerMenu({ setShowFav }) {
+// eslint-disable-next-line react/prop-types
+function HamburgerMenu({ showSub, showFav, setShowFav, setShowSub }) {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggleMenu = () => {
@@ -12,6 +13,17 @@ function HamburgerMenu({ setShowFav }) {
   };
 
   const token = localStorage.getItem("token");
+
+  const handleFav = () => {
+    setShowFav(true)
+    setShowSub(false)
+
+  }
+  const handleSub = () => {
+    setShowFav(false)
+    setShowSub(true)
+
+  }
 
   // responsive hamburger menu
   useEffect(() => {
@@ -55,28 +67,32 @@ function HamburgerMenu({ setShowFav }) {
       </div>
 
       {isOpen && (
-        <div className= "sm:bg-white sm:text-black md:bg-black md:text-white p-3 rounded-md absolute">
+        <div className="sm:bg-white sm:text-black md:bg-black md:text-white p-3 rounded-md absolute">
           <ul>
-            {/* <li className="p-2">Welcome back, { location.state.id}</li> */}
             <div>
               <li className="flex items-center p-2">
                 <div className="w-15 pr-5">
                   <HiHome className="w-6 h-6" />
                 </div>
-                <a href="#" className="align-middle">
+                <a href="/" className="align-middle  hover:text-red-500">
                   Home
                 </a>
               </li>
             </div>
             <div>
-              <li className="flex items-center p-2">
-                <div className="w-15 pr-5">
-                  <AiOutlineHeart className="w-6 h-6" />
-                </div>
-                <a href="#" className="align-middle">
-                  Subscribe
-                </a>
-              </li>
+              {token && (
+                <li className="flex items-center p-2">
+                  <div className="w-15 pr-5">
+                    <AiOutlineHeart className="w-6 h-6" />
+                  </div>
+                  <button
+                    onClick={handleSub}
+                    className={`align-middle hover:text-red-500 ${showSub ? "text-red-500" : ""}`}
+                  >
+                    Subscribe
+                  </button>
+                </li>
+              )}
             </div>
             <div>
               {token && (
@@ -85,8 +101,8 @@ function HamburgerMenu({ setShowFav }) {
                     <MdOutlineWatchLater className="w-6 h-6" />
                   </div>
                   <button
-                    onClick={() => setShowFav(true)}
-                    className="align-middle"
+                    onClick={handleFav}
+                    className={`align-middle hover:text-red-500 ${showFav ? "text-red-500" : ""}`}
                   >
                     Watch later
                   </button>

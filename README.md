@@ -1,57 +1,36 @@
 <p align="center">
-    <img src="https://ik.imagekit.io/atcan/youtubeReadmeLogo.png?updatedAt=1691383187840" width="450" height="100%/">
-    <img src="https://ik.imagekit.io/atcan/youtubeReadme01.png?updatedAt=1691378534811" width="750" height="100%/">
+  <a href="https://github.com/AtenaHatta/MyYoutube">
+    <img src="myyoutube_logo.png" width="40%">
+  </a>
 </p> 
 
-<p id="description">The actual YouTube API is used to display videos in this application. By logging in, users can access features such as 'subscribe' and 'watch later', enabling them to save their favorite videos.</p>
+## Demo Link
 
-<h2>🚀 Demo</h2>
-https://my-you-tube-client.vercel.app/
-<br>
-<br>
-<img src="https://ik.imagekit.io/atcan/youtubeReadme02.png?updatedAt=1691378368468" alt="Card" width="600" height="100%/">
-<img src="https://ik.imagekit.io/atcan/Screenshot%202023-08-09%20at%205.30.11%20PM.png?updatedAt=1691627516219" alt="subscribe" width="600" height="100%/">
-<img src="https://ik.imagekit.io/atcan/youtubeReadme03.png?updatedAt=1691378366777" alt="signin" width="600" height="100%/">
+- [Demo page](https://my-you-tube-client.vercel.app/) 
 
-<h2>🧐 Features</h2>
-🔍 YouTube Search: <br>
-　　Enter the name of the YouTube video you're searching for.<br>
-　　The videos corresponding to your search will be displayed for you to select from.<br><br>
-🩷 Subscribe: <br>
-　　After signing up, you can add your favorite channel to your 'Subscribe'.<br><br>
-🕰️ Watch later: <br>
-　　After signing up, you can add your favorite videos to your 'Watch later'.<br><br>
-📕 Category:<br>
-　　If you're unsure of what to watch, simply click on a category located under the search bar. <br>
-　　Videos will then be displayed based on the category you select.<br><br>
-📱 Responsive Design: <br>
-　　Regardless of whether you're using a computer, tablet, or phone, <br>
-　　the app is designed to adjust and fit your screen perfectly.<br>
+![The top image](./client/vite-project/src/assets/myyoutube_img.png)
 
-<h2>🛠️ Installation Steps:</h2>
+## Built With
 
-<p>1. cd api</p>
+- `React.js`
+- `Nodejs`
+- `express`
+- `MongoDB`
+- `Mongoose`
+- `TailwindCSS` 
 
-```
-npm i & npm run dev
-```
 
-<p>2. cd server</p>
+## Features
 
-```
-npm i & npm run dev
-```
+- By using a search form, you can search for your favorite videos and display actual YouTube videos using the Google YouTube API. Furthermore, by signing in, you can add videos to your 'subscribe' and save them for later viewing 'watch later'. These actions do not affect the actual YouTube platform and allow you to save them as personal notes.
 
-  
-  
-<h2>💻 Built with</h2>
+## Challenging Part
 
-Technologies used in the project:
+- I faced challenges in coordinating the client-side and backend-side interactions due to the limited number of fetches allowed by the Google API（The daily fetch limit for the Google YouTube API varies depending on the category). Additionally, obtaining tokens and storing user data in a database and local storage proved to be difficult.
 
-*   React.js
-*   Node.js
-*   MongoDB
-*   Express
-*   TailwindCSS
-*   Library
-  ( axios, brypt, date-fns, react-hook-form, react-icons, ract-router-dom, react-toastify, zod )
+
+## Setup
+
+- Download or clone the repository
+- Run `npm install`
+- Run `npm run dev` to start running the app

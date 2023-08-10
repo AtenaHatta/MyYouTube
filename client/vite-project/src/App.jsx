@@ -1,5 +1,4 @@
 import Home from "./components/Home";
-import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Signin from "./components/userAuth/Signin";
 import Signup from "./components/userAuth/Signup";
