@@ -53,3 +53,5 @@ Technologies used in the project:
 *   MongoDB
 *   Express
 *   TailwindCSS
+*   Library
+  ( axios, brypt, date-fns, react-hook-form, react-icons, ract-router-dom, react-toastify, zod )
