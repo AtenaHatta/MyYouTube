@@ -4,6 +4,7 @@ import { handleSaveWatchLater, handleSaveToSubscribeList } from "./card.config";
 import { toast } from "react-toastify";
 import { format } from "date-fns";
 import { CardShowModal } from "./CardShowModal";
+import Skelton from "../../layout/Skelton";
 
 function Card({ data }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +38,7 @@ function Card({ data }) {
 
     const response = await fetch(`${url}/user/checkWatchList`, options);
     const result = await response.json();
-    
+
     if (result.message === "Video is already in favorites") {
       setWatchLater(true);
     }
@@ -64,7 +65,6 @@ function Card({ data }) {
   //     setSubscribed(true);
   //   }
   // };
-
 
   // remove Watch later list ------------------------------
   const removeFromWachList = async () => {
@@ -101,34 +101,39 @@ function Card({ data }) {
     }
   }, [isOpen]);
 
+
   return (
     <div>
-      <div onClick={handleOpen} className="cursor-pointer">
-        <img
-          className={`youtubelogo w-[400px] h-[100%] mr-1 rounded hover:rounded-none `}
-          src={data.snippet.thumbnails.medium.url}
-          alt="youtubelogo"
-          width={400}
-          height={200}
-        />
-        <div className="flex items-center justify-start">
-          <div>
-            <h3 className="text-lg">{data.snippet.title}</h3>
-            <div className="flex items-center">
-              <p className="text-gray-400">{data.snippet.channelTitle}</p>
-              <button
-                className="text-xs md:text-xs bg-slate-800 px-2 py-1 ml-2 rounded-full hover:text-red-500"
-                onClick={() => unsubscribeChannel(channel.id)}
-              >
-                Subscribe
-              </button>
+      {!data.kind.length > 0 ? (
+        <div onClick={handleOpen} className="cursor-pointer">
+          <img
+            className={`youtubelogo w-[400px] h-[100%] mr-1 rounded hover:rounded-none `}
+            src={data.snippet.thumbnails.medium.url}
+            alt="youtubelogo"
+            width={400}
+            height={200}
+          />
+          <div className="flex items-center justify-start">
+            <div>
+              <h3 className="text-lg">{data.snippet.title}</h3>
+              <div className="flex items-center">
+                <p className="text-gray-400">{data.snippet.channelTitle}</p>
+                <button
+                  className="text-xs md:text-xs bg-slate-800 px-2 py-1 ml-2 rounded-full hover:text-red-500"
+                  onClick={() => unsubscribeChannel(channel.id)}
+                >
+                  Subscribe
+                </button>
+              </div>
+              <p className="text-gray-400 text-sm">
+                {format(new Date(data.snippet.publishTime), "MMM d yyyy")}
+              </p>
             </div>
-            <p className="text-gray-400 text-sm">
-              {format(new Date(data.snippet.publishTime), "MMM d yyyy")}
-            </p>
           </div>
         </div>
-      </div>
+      ) : (
+        <Skelton />
+      )}
 
       <CardShowModal
         isOpen={isOpen}

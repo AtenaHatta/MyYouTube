@@ -1,5 +1,3 @@
-
-
 export function WatchShowModal({
   isOpen,
   handleClose,
@@ -28,11 +26,11 @@ export function WatchShowModal({
             >
               &#8203;
             </span>
-            <div className="inline-block align-bottom w-max bg-black rounded-lg text-left  shadow-xl transform transition-all sm:my-8 sm:align-middle md:w-min ">
-              <div className="bg-black px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div className="relative overflow-hidden w-full pt-[56.25%] ">
+            <div className="inline-block align-bottom max-w-5xl bg-black rounded-lg text-left shadow-xl transform transition-all sm:my-8 sm:align-middle">
+              <div className="px-4 py-10">
+                <div className="relative overflow-hidden w-full pt-[56.25%]">
                   <iframe
-                     className="absolute top-0 left-0 w-full h-full" 
+                    className="absolute top-0 left-0 w-full h-full" 
                     src={`https://www.youtube.com/embed/${data.videoId}`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -42,7 +40,7 @@ export function WatchShowModal({
                 <h1 className="text-lg">{data.title}</h1>
                 <p className="text-sm">{data.description}</p>
               </div>
-              <div className="bg-black-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+              <div className="bg-black px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
                   type="button"
                   onClick={handleClose}
@@ -50,22 +48,12 @@ export function WatchShowModal({
                 >
                   Close
                 </button>
-                {/* {!subscribe ? ( */}
-                <button
+                {/* <button
                   type="button"
                   className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                 >
                   Subscribe
-                </button>
-                {/* ) : (
-                      <button
-                        type="button"
-                        onClick={removeFromSubscribeList}
-                        className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                      >
-                        Unsubscribe
-                      </button>
-                    )} */}
+                </button> */}
                 {!watchLater ? (
                   <button
                     type="button"

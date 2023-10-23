@@ -1,31 +1,46 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { HiMenu, HiHome } from "react-icons/hi";
 import { MdOutlineWatchLater } from "react-icons/md";
 import { AiOutlineHeart } from "react-icons/ai";
 import youtubelogo from "../../assets/youtubelogo.png";
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 function HamburgerMenu({ showSub, showFav, setShowFav, setShowSub }) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);
+  const token = localStorage.getItem("token");
 
+  // hamnurger menu open/close -------------------------
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const token = localStorage.getItem("token");
-
   const handleFav = () => {
-    setShowFav(true)
-    setShowSub(false)
-
-  }
+    setShowFav(true);
+    setShowSub(false);
+    toggleMenu();
+  };
   const handleSub = () => {
-    setShowFav(false)
-    setShowSub(true)
+    setShowFav(false);
+    setShowSub(true);
+    toggleMenu();
+  };
 
-  }
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
 
-  // responsive hamburger menu
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // responsive hamburger -------------------------
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
@@ -40,6 +55,8 @@ function HamburgerMenu({ showSub, showFav, setShowFav, setShowSub }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+
 
   return (
     <div className="w-200">
@@ -56,18 +73,23 @@ function HamburgerMenu({ showSub, showFav, setShowFav, setShowSub }) {
             )}
           </button>
         </div>
+        <Link to="/">
         <div className="flex items-center">
           <img
             className="youtubelogo md:w-10 md:h-10 xs:w-12 xs:h-12 mr-1"
             src={youtubelogo}
             alt="youtubelogo"
           />
-          <div className="hidden sm:block text-white text-1xl">MyYouTube</div>
+          <p className="hidden sm:block text-white text-1xl">MyYouTube</p>
         </div>
+        </Link>
       </div>
 
       {isOpen && (
-        <div className="sm:bg-white sm:text-black md:bg-black md:text-white p-3 rounded-md absolute">
+        <div
+          className="sm:bg-white sm:text-black md:bg-black md:text-white p-3 rounded-md absolute"
+          ref={menuRef}
+        >
           <ul>
             <div>
               <li className="flex items-center p-2">
@@ -87,7 +109,9 @@ function HamburgerMenu({ showSub, showFav, setShowFav, setShowSub }) {
                   </div>
                   <button
                     onClick={handleSub}
-                    className={`align-middle hover:text-red-500 ${showSub ? "text-red-500" : ""}`}
+                    className={`align-middle hover:text-red-500 ${
+                      showSub ? "text-red-500" : ""
+                    }`}
                   >
                     Subscribe
                   </button>
@@ -102,7 +126,9 @@ function HamburgerMenu({ showSub, showFav, setShowFav, setShowSub }) {
                   </div>
                   <button
                     onClick={handleFav}
-                    className={`align-middle hover:text-red-500 ${showFav ? "text-red-500" : ""}`}
+                    className={`align-middle hover:text-red-500 ${
+                      showFav ? "text-red-500" : ""
+                    }`}
                   >
                     Watch later
                   </button>

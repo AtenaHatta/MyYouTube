@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-
 function SignUp() {
   const navigate = useNavigate();
   const VITE_HOST = import.meta.env.VITE_HOST;
@@ -25,10 +24,14 @@ function SignUp() {
       message: "Passwords do not match",
       path: ["confirmPass"],
     });
-    console.log(useForm);
+  console.log(useForm);
 
   //React hook form
-  const {register, handleSubmit, formState: { errors, isSubmitting }} = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
     resolver: zodResolver(schema),
   });
 
@@ -69,7 +72,9 @@ function SignUp() {
               {...register("email")}
             />
           </div>
-          {errors.email && <p className="error text-[red]">{errors.email.message}</p>}
+          {errors.email && (
+            <p className="error text-[red]">{errors.email.message}</p>
+          )}
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Password
@@ -78,7 +83,7 @@ function SignUp() {
               className="w-full px-3 py-2 mt-1 text-gray-900 placeholder-gray-400 border border-gray-300 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
               type="password"
               placeholder="Password"
-              name="password" 
+              name="password"
               {...register("password")}
             />
           </div>

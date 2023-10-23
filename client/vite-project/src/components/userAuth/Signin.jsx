@@ -5,41 +5,45 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-
 function SignIn() {
   const navigate = useNavigate();
   const VITE_HOST = import.meta.env.VITE_HOST;
 
   //zod schema
   const schema = z
-  .object({
-    email: z.string().email({ message: "Invalid email" }),
-    password: z.string().min(5, {
-      message: "Password is too short! Must be a minimum of 5 characters.",
+    .object({
+      email: z.string().email({ message: "Invalid email" }),
+      password: z.string().min(5, {
+        message: "Password is too short! Must be a minimum of 5 characters.",
+      }),
     })
-  })
-  .refine((data) => data.password === data.password, {
-    message: "Passwords do not match",
-  });
+    .refine((data) => data.password === data.password, {
+      message: "Passwords do not match",
+    });
   console.log(useForm);
 
   //React hook form
-  const {register, handleSubmit, formState: { errors, isSubmitting }} = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(schema),
   });
 
   //send this data to backend
   const handleSignIn = async (formData) => {
-    
     try {
-      await axios.post(`${VITE_HOST}/user/signin`, {
-        email: formData.email,
-        password: formData.password,
-      }).then((res) => {
-        //put token in local storage
-        localStorage.setItem("token", res.data.user);
-        localStorage.setItem("user", JSON.stringify(res.data.user));
-      });
+      await axios
+        .post(`${VITE_HOST}/user/signin`, {
+          email: formData.email,
+          password: formData.password,
+        })
+        .then((res) => {
+          //put token in local storage
+          localStorage.setItem("token", res.data.user);
+          localStorage.setItem("user", JSON.stringify(res.data.user));
+        });
       toast.success("Sign in successful!");
       navigate("/");
     } catch (err) {
@@ -53,9 +57,9 @@ function SignIn() {
         <h2 className="text-2xl font-extrabold text-center text-gray-900">
           Sign In
         </h2>
-        <form className="space-y-6" 
-        onSubmit={handleSubmit((formData) => handleSignIn(formData))}
-        sx={{ mt: 3 }}
+        <form
+          className="space-y-6"
+          onSubmit={handleSubmit((formData) => handleSignIn(formData))}
         >
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -69,7 +73,9 @@ function SignIn() {
               {...register("email")}
             />
           </div>
-          {errors.email && <p className="error text-[red]">{errors.email.message}</p>}
+          {errors.email && (
+            <p className="error text-[red]">{errors.email.message}</p>
+          )}
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Password
@@ -82,7 +88,9 @@ function SignIn() {
               {...register("password")}
             />
           </div>
-          {errors.password && <p className="error text-[red]">{errors.password.message}</p>}
+          {errors.password && (
+            <p className="error text-[red]">{errors.password.message}</p>
+          )}
           <div>
             <button
               type="submit"
@@ -92,14 +100,21 @@ function SignIn() {
             </button>
           </div>
           <div className="text-right">
-          <span className="text-sm text-gray-400 pr-2">Don't have an account?</span>
-            <Link to="/signup" className="text-sm text-red-600 hover:text-red-500">
+            <span className="text-sm text-gray-400 pr-2">
+              Don't have an account?
+            </span>
+            <Link
+              to="/signup"
+              className="text-sm text-red-600 hover:text-red-500"
+            >
               Sign up
             </Link>
           </div>
         </form>
       </div>
-      <Link to="/" className="text-sm text-white hover:text-red-500 mt-5">back</Link>
+      <Link to="/" className="text-sm text-white hover:text-red-500 mt-5">
+        back
+      </Link>
     </div>
   );
 }
