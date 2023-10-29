@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
-import { handleSaveWatchLater, handleSaveToSubscribeList } from "./card.config";
+// import { handleSaveWatchLater, handleSaveToSubscribeList } from "./card.config";
 import { toast } from "react-toastify";
 import { format } from "date-fns";
 import { CardShowModal } from "./CardShowModal";
 import Skelton from "../../layout/Skelton";
 
-function Card({ data, loading }) {
+function Card({ data }) {
   const [isOpen, setIsOpen] = useState(false);
   const [watchLater, setWatchLater] = useState(false);
 
@@ -103,7 +103,7 @@ function Card({ data, loading }) {
 
   return (
     <div>
-      {loading ? (
+      {!data ? (
         <Skelton />
       ) : (
         <div onClick={handleOpen} className="cursor-pointer">
@@ -121,7 +121,7 @@ function Card({ data, loading }) {
                 <p className="text-gray-400">{data.snippet.channelTitle}</p>
                 <button
                   className="text-xs md:text-xs bg-slate-800 px-2 py-1 ml-2 rounded-full hover:text-red-500"
-                  onClick={() => unsubscribeChannel(channel.id)}
+                  // onClick={() => unsubscribeChannel(channel.id)}
                 >
                   Subscribe
                 </button>
