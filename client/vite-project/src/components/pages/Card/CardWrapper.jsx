@@ -5,6 +5,7 @@ import SkeltonWtapper from "../../layout/SkeltonWtapper";
 function CardWrapper({ search }) {
   const [data, setData] = useState([]);
   const [chanel, setChanel] = useState("UCCbof2as-xl4HO2UopxdlOQ");
+  const [loading, setLoading] = useState(true);
 
   const host = import.meta.env.VITE_HOST;
   const url = `${host}/youtube/search/${search}`;
@@ -21,6 +22,7 @@ function CardWrapper({ search }) {
 
       const data = await response.json();
       setData(data.items);
+      setLoading(false);
     } catch (error) {
       console.error("Error:", error.message); // Logs the error message to console
     }
@@ -60,13 +62,11 @@ function CardWrapper({ search }) {
     <div className="text-white flex items-center justify-center mt-5">
       <div className="px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center">
-          {data?.length > 0
-            ? data.map((item, index) => (
-                <React.Fragment key={index}>
-                  <Card data={item} />
-                </React.Fragment>
-              ))
-            : null}
+          {data.map((item, index) => (
+            <React.Fragment key={index}>
+              <Card data={item} loading={loading} />
+            </React.Fragment>
+          ))}
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ import { format } from "date-fns";
 import { CardShowModal } from "./CardShowModal";
 import Skelton from "../../layout/Skelton";
 
-function Card({ data }) {
+function Card({ data, loading }) {
   const [isOpen, setIsOpen] = useState(false);
   const [watchLater, setWatchLater] = useState(false);
 
@@ -101,10 +101,11 @@ function Card({ data }) {
     }
   }, [isOpen]);
 
-
   return (
     <div>
-      {!data.kind.length > 0 ? (
+      {loading ? (
+        <Skelton />
+      ) : (
         <div onClick={handleOpen} className="cursor-pointer">
           <img
             className={`youtubelogo w-[400px] h-[100%] mr-1 rounded hover:rounded-none `}
@@ -131,8 +132,6 @@ function Card({ data }) {
             </div>
           </div>
         </div>
-      ) : (
-        <Skelton />
       )}
 
       <CardShowModal
