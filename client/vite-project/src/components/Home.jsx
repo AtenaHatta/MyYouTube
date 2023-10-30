@@ -19,15 +19,13 @@ function Home() {
     <>
       <Header />
       <div className="mx-auto mt-5 md:mt-24">
-        <div className="md:ml-[150px] sm:ml-0">
-          {showFav ? (
-            <WatchLaterWrapper />
-          ) : showSub ? (
-            <SubscribeWrapper />
-          ) : (
-            <CardWrapper search={searchData} />
-          )}
-        </div>
+        {showFav ? (
+          <WatchLaterWrapper />
+        ) : showSub ? (
+          <SubscribeWrapper />
+        ) : (
+          <CardWrapper search={searchData} />
+        )}
       </div>
     </>
   );

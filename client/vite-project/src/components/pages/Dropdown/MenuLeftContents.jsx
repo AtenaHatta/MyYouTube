@@ -1,17 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { MdOutlineWatchLater } from "react-icons/md";
 import { HiHome, HiOutlineLogout, HiOutlineLogin } from "react-icons/hi";
-import {
-  AiFillHeart,
-  AiOutlineFire,
-  AiFillLike,
-  AiFillDislike,
-} from "react-icons/ai";
+import { AiFillHeart, AiOutlineFire, AiFillLike } from "react-icons/ai";
+import { toast } from "react-toastify";
 
 function MenuLeftContents() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [user, setUser] = useState(null);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -23,7 +20,8 @@ function MenuLeftContents() {
     { icon: <MdOutlineWatchLater />, text: "Watch later", link: "/watchlater" },
     { icon: <AiOutlineFire />, text: "Popular", link: "/popular" },
     { icon: <AiFillLike />, text: "Liked videos", link: "/likedvideos" },
-    { icon: <AiFillDislike />, text: "Unliked videos", link: "/unlikedvideos" },
+
+
     {
       icon: <HiOutlineLogin />,
       text: "Sign in",
@@ -41,8 +39,39 @@ function MenuLeftContents() {
       text: "Log out",
       link: "/",
       hiddenOnDesktop: true,
-    }
+    },
   ];
+
+  const filterItems = (items) => {
+
+    if (user) {
+      return items.filter((item) => item.text !== "Sign in" && item.text !== "Sign up");
+    } else {
+      return items.filter((item) => item.text !== "Log out");
+    }
+   
+  }
+
+  const checkIfUserIsLoggedIn = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setUser(user);
+    }
+    
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    setUser(null);
+    toast.success("Logged out successfully!");
+    toggleDrawer();
+  };
+
+  useEffect(() => {
+    checkIfUserIsLoggedIn();
+
+  }, [isDrawerOpen]);
 
   return (
     <div className="w-200 relative z-10">
@@ -65,7 +94,7 @@ function MenuLeftContents() {
         } bg-white w-64 dark:bg-gray-800`}
         tabIndex="-1"
       >
-        <h5 className="text-xl md:text-lg font-semibold text-gray-500 uppercase dark:text-gray-400">
+        <h5 className="text-xl md:text-lg font-semibold text-gray-500 uppercase dark:text-gray-400 text-center">
           Menu
         </h5>
         <button
@@ -88,9 +117,7 @@ function MenuLeftContents() {
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
                   {item.icon}
-                  <span className="ml-3 text-xl md:text-base">
-                    {item.text}
-                  </span>
+                  <span className="ml-3 text-xl md:text-base">{item.text}</span>
                 </a>
               </li>
             ))}

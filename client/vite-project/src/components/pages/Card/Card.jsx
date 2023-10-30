@@ -106,30 +106,29 @@ function Card({ data }) {
       {!data ? (
         <Skelton />
       ) : (
-        <div onClick={handleOpen} className="cursor-pointer">
+        <div
+          onClick={handleOpen}
+          className="cursor-pointer flex flex-col justify-center "
+        >
           <img
-            className={`youtubelogo w-[400px] h-[100%] mr-1 rounded hover:rounded-none `}
+            className={`youtubelogo w-full h-full rounded-lg  `}
             src={data.snippet.thumbnails.medium.url}
             alt="youtubelogo"
-            width={400}
-            height={200}
           />
-          <div className="flex items-center justify-start">
-            <div>
-              <h3 className="text-lg">{data.snippet.title}</h3>
-              <div className="flex items-center">
-                <p className="text-gray-400">{data.snippet.channelTitle}</p>
-                <button
-                  className="text-xs md:text-xs bg-slate-800 px-2 py-1 ml-2 rounded-full hover:text-red-500"
-                  // onClick={() => unsubscribeChannel(channel.id)}
-                >
-                  Subscribe
-                </button>
-              </div>
-              <p className="text-gray-400 text-sm">
-                {format(new Date(data.snippet.publishTime), "MMM d yyyy")}
-              </p>
+          <div className="flex flex-wrap">
+            <h3 className="">{data.snippet.title}</h3>
+            <div className="flex items-center">
+              <p className="text-gray-400">{data.snippet.channelTitle}</p>
+              <button
+                className="text-xs md:text-xs bg-slate-800 px-2 py-1 ml-2 rounded-full hover:text-red-500"
+                // onClick={() => unsubscribeChannel(channel.id)}
+              >
+                Subscribe
+              </button>
             </div>
+            <p className="text-gray-400 text-sm">
+              {format(new Date(data.snippet.publishTime), "MMM d yyyy")}
+            </p>
           </div>
         </div>
       )}

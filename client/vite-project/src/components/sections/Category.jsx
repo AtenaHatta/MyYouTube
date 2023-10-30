@@ -1,7 +1,7 @@
 function Category() {
   return (
     <div className="xs:hidden md:block">
-      <div className="flex flex-wrap md:ml-[10%]">
+      <div className="flex flex-wrap items-center justify-center pb-3">
         <a
           href="/games"
           className="flex items-center justify-center w-auto h-10 p-4 m-2 rounded-full cursor-pointer bg-gray-800 hover:bg-gray-700"

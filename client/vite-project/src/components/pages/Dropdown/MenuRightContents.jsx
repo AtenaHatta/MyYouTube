@@ -1,15 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { VscAccount } from "react-icons/vsc";
 import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { HiOutlineLogout, HiOutlineLogin } from "react-icons/hi";
+import { toast } from "react-toastify";
 
 function MenuRightContents() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [user, setUser] = useState(null);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
+
+  const checkIfUserIsLoggedIn = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setUser(user);
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    setUser(null);
+    toast.success("Logged out successfully!");
+    toggleDrawer();
+  };
+
+  useEffect(() => {
+    checkIfUserIsLoggedIn();
+  }, [isDrawerOpen]);
 
   return (
     <div className="w-200 relative z-10">
@@ -45,33 +66,38 @@ function MenuRightContents() {
         </button>
         <div className="py-4 overflow-y-auto">
           <ul className="space-y-2 font-medium text-white">
-            <li>
-              <Link
-                to="/"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <HiOutlineLogout className="text-lg" />
-                <span className="ml-3 text-xl md:text-base">Logout</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/signin"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <HiOutlineLogin className="text-lg" />
-                <span className="ml-3 text-xl md:text-base">Sign in</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/signup"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <HiOutlineLogin className="text-lg" />
-                <span className="ml-3 text-xl md:text-base">Sign up</span>
-              </Link>
-            </li>
+            {!user ? (
+              <>
+                <li>
+                  <Link
+                    to="/signin"
+                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  >
+                    <HiOutlineLogin className="text-lg" />
+                    <span className="ml-3 text-xl md:text-base">Sign in</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/signup"
+                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  >
+                    <HiOutlineLogin className="text-lg" />
+                    <span className="ml-3 text-xl md:text-base">Sign up</span>
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <li>
+                <button
+                  className="flex items-center w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  onClick={handleLogout}
+                >
+                  <HiOutlineLogout className="text-lg" />
+                  <span className="ml-3 text-xl md:text-base">Logout</span>
+                </button>
+              </li>
+            )}
           </ul>
         </div>
       </div>

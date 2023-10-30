@@ -28,6 +28,7 @@ function CardWrapper({ search }) {
     fetchData();
   }, [search, url]);
 
+
   const apiKey = import.meta.env.VITE_YOUTUBE_APIKEY;
 
   const fetchChannelById = async () => {
@@ -55,13 +56,17 @@ function CardWrapper({ search }) {
     }
   });
 
+  if(!data) return null;
+  console.log(data);
+  const removeShorts = data.filter((item) => item.snippet.description !== '' && item.id.kind === 'youtube#video');
+
   return (
     <div className="text-white flex items-center justify-center mt-20 md:mt-40">
       <div className="px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center">
+        <div className="grid grid-cols-1 smXl:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center">
           {loading
             ? Array.from({ length: 10 }, (_, index) => <Card key={index} />)
-            : data.map((item, index) => <Card key={index} data={item} />)}
+            : removeShorts.map((item, index) => <Card key={index} data={item} />)}
         </div>
       </div>
     </div>
