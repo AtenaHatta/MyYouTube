@@ -15,7 +15,7 @@ function SearchForm() {
   };
 
   return (
-    <form className="flex items-center justify-center md:mt-[0px]" onSubmit={handleSubmit}>
+    <form className="flex items-center justify-center w-full md:mt-[0px]" onSubmit={handleSubmit}>
       <label htmlFor="voice-search" className="sr-only">
         Search
       </label>

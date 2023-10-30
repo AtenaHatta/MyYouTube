@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "./sections/Header";
-import Category from "./sections/Category";
-import HamburgerMenu from "./sections/HamburgerMenu";
 import CardWrapper from "./pages/Card/CardWrapper";
 import WatchLaterWrapper from "./pages/Watchlater/WatchLaterWrapper";
 import SubscribeWrapper from "./pages/Subscribe/SubscribeWrapper";
@@ -20,10 +18,8 @@ function Home() {
   return (
     <>
       <Header />
-      <div className="mx-auto">
-        <HamburgerMenu showFav={showFav} setShowFav={setShowFav} showSub={showSub} setShowSub={setShowSub}/>
+      <div className="mx-auto mt-5 md:mt-24">
         <div className="md:ml-[150px] sm:ml-0">
-          <Category />
           {showFav ? (
             <WatchLaterWrapper />
           ) : showSub ? (

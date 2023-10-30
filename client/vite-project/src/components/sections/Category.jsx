@@ -1,6 +1,6 @@
 function Category() {
   return (
-    <div className="xs:hidden md:block ">
+    <div className="xs:hidden md:block">
       <div className="flex flex-wrap md:ml-[10%]">
         <a
           href="/games"
