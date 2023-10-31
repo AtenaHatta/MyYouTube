@@ -42,7 +42,7 @@ function MenuRightContents() {
         <VscAccount className="w-5 h-5 text-white m-5" />
       </button>
       <div
-        className={`fixed inset-0 bg-black opacity-50 z-30 ${
+        className={`fixed inset-0 bg-black opacity-40 z-30 ${
           isDrawerOpen ? "block" : "hidden"
         }`}
         onClick={toggleDrawer}
@@ -50,7 +50,7 @@ function MenuRightContents() {
       <div
         className={`fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform ${
           isDrawerOpen ? "" : "translate-x-full"
-        } bg-white w-64 dark:bg-gray-800`}
+        } bg-white w-64 dark:bg-black`}
         tabIndex="-1"
       >
         <h5 className="text-xl md:text-lg font-semibold text-gray-500 uppercase dark:text-gray-400 text-center">

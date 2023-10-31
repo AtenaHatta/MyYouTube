@@ -24,7 +24,7 @@ function DropDown({ items }) {
           </button>
           <div
             className={`fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform ${isDrawerOpen ? "" : "-translate-x-full"
-              } bg-white w-64 dark:bg-gray-800`}
+              } bg-white w-64 dark:bg-black`}
             tabIndex="-1"
           >
             <h5 className="text-xl md:text-lg font-semibold text-gray-500 uppercase dark:text-gray-400">

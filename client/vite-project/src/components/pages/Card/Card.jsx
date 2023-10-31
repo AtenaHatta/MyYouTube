@@ -116,6 +116,7 @@ function Card({ data }) {
             alt="youtubelogo"
           />
           <div className="flex flex-wrap">
+          
             <h3 className="">{data.snippet.title}</h3>
             <div className="flex items-center">
               <p className="text-gray-400">{data.snippet.channelTitle}</p>

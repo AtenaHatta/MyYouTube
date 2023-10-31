@@ -5,6 +5,7 @@ import { MdOutlineWatchLater } from "react-icons/md";
 import { HiHome, HiOutlineLogout, HiOutlineLogin } from "react-icons/hi";
 import { AiFillHeart, AiOutlineFire, AiFillLike } from "react-icons/ai";
 import { toast } from "react-toastify";
+import youtubelogo from "../../../assets/youtubelogo.png";
 
 function MenuLeftContents() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -20,7 +21,6 @@ function MenuLeftContents() {
     { icon: <MdOutlineWatchLater />, text: "Watch later", link: "/watchlater" },
     { icon: <AiOutlineFire />, text: "Popular", link: "/popular" },
     { icon: <AiFillLike />, text: "Liked videos", link: "/likedvideos" },
-
 
     {
       icon: <HiOutlineLogin />,
@@ -43,21 +43,20 @@ function MenuLeftContents() {
   ];
 
   const filterItems = (items) => {
-
     if (user) {
-      return items.filter((item) => item.text !== "Sign in" && item.text !== "Sign up");
+      return items.filter(
+        (item) => item.text !== "Sign in" && item.text !== "Sign up"
+      );
     } else {
       return items.filter((item) => item.text !== "Log out");
     }
-   
-  }
+  };
 
   const checkIfUserIsLoggedIn = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       setUser(user);
     }
-    
   };
 
   const handleLogout = () => {
@@ -70,7 +69,6 @@ function MenuLeftContents() {
 
   useEffect(() => {
     checkIfUserIsLoggedIn();
-
   }, [isDrawerOpen]);
 
   return (
@@ -83,7 +81,7 @@ function MenuLeftContents() {
         <HiMenu />
       </button>
       <div
-        className={`fixed inset-0 bg-black opacity-50 z-30 ${
+        className={`fixed inset-0 bg-black opacity-40 z-30 ${
           isDrawerOpen ? "block" : "hidden"
         }`}
         onClick={toggleDrawer}
@@ -91,12 +89,17 @@ function MenuLeftContents() {
       <div
         className={`fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform ${
           isDrawerOpen ? "" : "-translate-x-full"
-        } bg-white w-64 dark:bg-gray-800`}
+        } bg-white w-64 dark:bg-black`}
         tabIndex="-1"
       >
-        <h5 className="text-xl md:text-lg font-semibold text-gray-500 uppercase dark:text-gray-400 text-center">
-          Menu
-        </h5>
+        <div className="flex justify-center items-center">
+          <img
+            className="youtubelogo md:w-10 md:h-10 w-12 h-12 mr-1"
+            src={youtubelogo}
+            alt="youtubelogo"
+          />
+          <p className="text-white text-xl font-roboto">MyYouTube</p>
+        </div>
         <button
           type="button"
           onClick={toggleDrawer}
