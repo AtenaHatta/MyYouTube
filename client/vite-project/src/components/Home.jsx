@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Header from "./sections/Header";
 import CardWrapper from "./pages/Card/CardWrapper";
 import WatchLaterWrapper from "./pages/Watchlater/WatchLaterWrapper";
 import SubscribeWrapper from "./pages/Subscribe/SubscribeWrapper";
@@ -17,7 +16,6 @@ function Home() {
 
   return (
     <>
-      <Header />
       <div className="mx-auto mt-5 md:mt-24">
         {showFav ? (
           <WatchLaterWrapper />

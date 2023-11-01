@@ -36,7 +36,6 @@ function CardWrapper({ search }) {
       const response = await fetch(
         `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${chanel}&key=${apiKey}`
       );
-      console.log(response.data);
 
       if (!response.ok) {
         const message = `An error has occured: ${response.status}`;
@@ -44,7 +43,6 @@ function CardWrapper({ search }) {
       }
 
       const data = await response.json();
-      console.log(data);
     } catch (error) {
       console.error("Error:", error.message); // Logs the error message to console
     }
@@ -57,7 +55,6 @@ function CardWrapper({ search }) {
   });
 
   if(!data) return null;
-  console.log(data);
   const removeShorts = data.filter((item) => item.snippet.description !== '' && item.id.kind === 'youtube#video');
 
   return (

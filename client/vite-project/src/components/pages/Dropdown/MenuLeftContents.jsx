@@ -1,15 +1,22 @@
 import { useEffect, useState } from "react";
-import { HiMenu } from "react-icons/hi";
-import { IoClose } from "react-icons/io5";
 import { MdOutlineWatchLater } from "react-icons/md";
-import { HiHome, HiOutlineLogout, HiOutlineLogin } from "react-icons/hi";
+import {
+  HiHome,
+  HiOutlineLogout,
+  HiOutlineLogin,
+  HiMenu,
+} from "react-icons/hi";
 import { AiFillHeart, AiOutlineFire, AiFillLike } from "react-icons/ai";
 import { toast } from "react-toastify";
 import youtubelogo from "../../../assets/youtubelogo.png";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import SubscribeMenu from "../Subscribe/SubscribeMenu";
 
 function MenuLeftContents() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -17,30 +24,21 @@ function MenuLeftContents() {
 
   const items = [
     { icon: <HiHome />, text: "Home", link: "/" },
-    { icon: <AiFillHeart />, text: "Subscribe", link: "/subscribe" },
-    { icon: <MdOutlineWatchLater />, text: "Watch later", link: "/watchlater" },
+    { icon: <AiFillHeart />, text: "Subscribe", link: "/subscribe", authRequired: true },
+    { icon: <MdOutlineWatchLater />, text: "Watch later", link: "/watchlater", authRequired: true },
     { icon: <AiOutlineFire />, text: "Popular", link: "/popular" },
-    { icon: <AiFillLike />, text: "Liked videos", link: "/likedvideos" },
-
-    {
-      icon: <HiOutlineLogin />,
-      text: "Sign in",
-      link: "/signin",
-      hiddenOnDesktop: true,
-    },
-    {
-      icon: <HiOutlineLogin />,
-      text: "Sign up",
-      link: "/signup",
-      hiddenOnDesktop: true,
-    },
-    {
-      icon: <HiOutlineLogout />,
-      text: "Log out",
-      link: "/",
-      hiddenOnDesktop: true,
-    },
+    { icon: <AiFillLike />, text: "Liked videos", link: "/likedvideos", authRequired: true },
   ];
+
+  const handleItemClick = (item) => {
+    if (item.authRequired && !user) {
+      navigate('/signin');
+      toast.info("You need to sign in first");
+    } else if (typeof item.link === 'string') {
+      navigate(item.link);
+    }
+    toggleDrawer();
+  };
 
   const filterItems = (items) => {
     if (user) {
@@ -93,37 +91,69 @@ function MenuLeftContents() {
         tabIndex="-1"
       >
         <div className="flex justify-center items-center">
+          <button
+            onClick={toggleDrawer}
+            className="text-white text-3xl px-1 py-2.5 mr-2"
+            type="button"
+          >
+            <HiMenu />
+          </button>
           <img
             className="youtubelogo md:w-10 md:h-10 w-12 h-12 mr-1"
             src={youtubelogo}
             alt="youtubelogo"
           />
-          <p className="text-white text-xl font-roboto">MyYouTube</p>
+          <p className="text-white text-2xl font-roboto">MyYouTube</p>
         </div>
-        <button
-          type="button"
-          onClick={toggleDrawer}
-          className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-lg w-8 h-8 absolute top-2.5 right-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
-        >
-          <IoClose />
-          <span className="sr-only">Close menu</span>
-        </button>
         <div className="py-4 overflow-y-auto">
           <ul className="space-y-2 font-medium">
             {items?.map((item, index) => (
-              <li
-                key={index}
-                className={item.hiddenOnDesktop ? "md:hidden" : ""}
-              >
-                <a
-                  href={item.link}
-                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              <li key={index} className={item.hiddenOnDesktop ? "md:hidden" : ""}>
+                <button
+                  onClick={() => handleItemClick(item)}
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full text-left"
                 >
                   {item.icon}
                   <span className="ml-3 text-xl md:text-base">{item.text}</span>
-                </a>
+                </button>
               </li>
             ))}
+            {!user ? (
+              <div className="md:hidden">
+                <li>
+                  <Link
+                    to="/signin"
+                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  >
+                    <HiOutlineLogin className="text-lg" />
+                    <span className="ml-3 text-xl md:text-base">Sign in</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/signup"
+                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  >
+                    <HiOutlineLogin className="text-lg" />
+                    <span className="ml-3 text-xl md:text-base">Sign up</span>
+                  </Link>
+                </li>
+              </div>
+            ) : (
+              <li className="md:hidden">
+                <button
+                  className="flex items-center w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  onClick={handleLogout}
+                >
+                  <HiOutlineLogout className="text-lg" />
+                  <span className="ml-3 text-xl md:text-base">Logout</span>
+                </button>
+              </li>
+            )}
+        
+
+            <SubscribeMenu />
+         
           </ul>
         </div>
       </div>

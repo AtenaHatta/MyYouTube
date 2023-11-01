@@ -13,11 +13,11 @@ function Menu() {
         <Link to="/">
         <div className="md:flex items-center">
           <img
-            className="font-roboto-condensed md:w-10 md:h-10 xs:w-12 xs:h-12 mr-1"
+            className="font-roboto-condensed w-full h-12 md:h-10 mr-1"
             src={youtubelogo}
             alt="youtubelogo"
           />
-          <p className="hidden md:block text-white text-2xl font-roboto">MyYouTube</p>
+          <p className="hidden lg:block text-white text-2xl font-roboto">MyYouTube</p>
         </div>
         </Link>
       </div>

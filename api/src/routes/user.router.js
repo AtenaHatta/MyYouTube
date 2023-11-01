@@ -8,6 +8,7 @@ const {
   removeWatchList,
   checkSubribeList,
   getWatchList,
+  removeFromSubscribeList
 } = require("../controller/user.controller");
 
 router.post("/signup", postUser); //when user go to /signup, run postUser function
@@ -15,7 +16,7 @@ router.post("/signup", postUser); //when user go to /signup, run postUser functi
 router.post("/signin", getUser); //when user go to /signin, run getUser function
 
 router.post("/watchlist", postWatchList);
-router.post("/subribelist", postSubscribeList);
+router.post("/subscribelist", postSubscribeList).delete("/subscribelist", removeFromSubscribeList);
 
 router
   .post("/checkWatchList", checkWatchList)

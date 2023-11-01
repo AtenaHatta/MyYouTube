@@ -63,7 +63,7 @@ exports.getUser = async (req, res) => {
         }
         //hide id(mongodb)
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-        res.status(200).json({ user: token });
+        res.status(200).json({ user: token , token: token});
 
     }
     catch(error){
@@ -101,7 +101,6 @@ exports.postWatchList = async (req, res) => {
   }
 }
 exports.postSubscribeList = async (req, res) => {
-  console.log(req.body);
   const chanel = req.body;
   const token = req.headers.authorization.split(" ")[1]; //token is from axios.post in Card.jsx
   const decoded = jwt.verify(token, process.env.JWT_SECRET); //decoding token
@@ -196,6 +195,26 @@ exports.removeWatchList = async (req, res) => {
     await user.save();
 
     return res.status(200).json({ message: 'Video removed from watchlist' });
+    
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal server error" });
+    
+  }
+}
+
+exports.removeFromSubscribeList = async (req, res) => {
+  const chanel = req.body;
+  const token = req.headers.authorization.split(" ")[1];
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id);
+
+    // Remove youtube video from user's watchlist
+    user.subscribed = user.subscribed.filter(subscribed => subscribed.channelID !== chanel.channelID);
+    await user.save();
+
+    return res.status(200).json({ message: 'You are now unsubscribed' });
     
   } catch (err) {
     console.log(err);
