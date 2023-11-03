@@ -1,29 +1,21 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CardWrapper from "./pages/Card/CardWrapper";
-import WatchLaterWrapper from "./pages/Watchlater/WatchLaterWrapper";
-import SubscribeWrapper from "./pages/Subscribe/SubscribeWrapper";
 
 function Home() {
   const { searchPARAMS } = useParams();
-  const [showFav, setShowFav] = useState(false);
-  const [showSub, setShowSub] = useState(false);
-  const [searchData, setSearch] = useState(searchPARAMS || "Travel");
+  const [searchData, setSearch] = useState('youtube');
 
   useEffect(() => {
-    setSearch(searchPARAMS || "Travel");
+    setSearch(searchPARAMS || 'youtube');
   }, [searchPARAMS]);
 
   return (
     <>
       <div className="mx-auto mt-5 md:mt-24">
-        {showFav ? (
-          <WatchLaterWrapper />
-        ) : showSub ? (
-          <SubscribeWrapper />
-        ) : (
+        
           <CardWrapper search={searchData} />
-        )}
+       
       </div>
     </>
   );

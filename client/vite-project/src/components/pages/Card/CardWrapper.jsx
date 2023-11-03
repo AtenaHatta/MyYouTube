@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 function CardWrapper({ search }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [chanel, setChanel] = useState("UCCbof2as-xl4HO2UopxdlOQ");
+
+  console.log(data);
 
   const host = import.meta.env.VITE_HOST;
   const url = `${host}/youtube/search/${search}`;
@@ -29,30 +30,30 @@ function CardWrapper({ search }) {
   }, [search, url]);
 
 
-  const apiKey = import.meta.env.VITE_YOUTUBE_APIKEY;
+  // const apiKey = import.meta.env.VITE_YOUTUBE_APIKEY;
 
-  const fetchChannelById = async () => {
-    try {
-      const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${chanel}&key=${apiKey}`
-      );
+  // const fetchChannelById = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${chanel}&key=${apiKey}`
+  //     );
 
-      if (!response.ok) {
-        const message = `An error has occured: ${response.status}`;
-        throw new Error(message);
-      }
+  //     if (!response.ok) {
+  //       const message = `An error has occured: ${response.status}`;
+  //       throw new Error(message);
+  //     }
 
-      const data = await response.json();
-    } catch (error) {
-      console.error("Error:", error.message); // Logs the error message to console
-    }
-  };
+  //     const data = await response.json();
+  //   } catch (error) {
+  //     console.error("Error:", error.message); // Logs the error message to console
+  //   }
+  // };
 
-  useEffect(() => {
-    if (chanel.length > 0) {
-      fetchChannelById();
-    }
-  });
+  // useEffect(() => {
+  //   if (chanel.length > 0) {
+  //     fetchChannelById();
+  //   }
+  // });
 
   if(!data) return null;
   const removeShorts = data.filter((item) => item.snippet.description !== '' && item.id.kind === 'youtube#video');

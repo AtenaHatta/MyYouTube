@@ -26,6 +26,35 @@ function SubscribeMenu() {
       console.error("Error fetching subscribe list:", error);
     }
   };
+
+
+  // remove Subscribe list ------------------------------
+  const unsubscribeChannel = async (channelID) => {
+    console.log(channelID);
+    const token = localStorage.getItem("token");
+    const url = import.meta.env.VITE_HOST;
+    const options = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({ channelID }),
+    };
+
+    const response = await fetch(`${url}/user/subscribelist`, options);
+
+    if (response.ok) {
+      // Remove the unsubscribed channel from local state
+      setData((prevData) =>
+        prevData.filter((channel) => channel.id !== channelID)
+      );
+    } else {
+      console.error("Error unsubscribing from channel:", await response.text());
+    }
+  };
+  
   useEffect(() => {
     getSubscribeList();
   }, []);
@@ -72,7 +101,10 @@ function SubscribeMenu() {
               <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"></div>
             </div>
             <div className="absolute top-0 left-0 flex items-center justify-center w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <button className="text-xs text-white md:text-xs bg-slate-800 p-2 rounded-full hover:text-red-500">
+              <button 
+              className="text-xs text-white md:text-xs bg-slate-800 p-2 rounded-full hover:text-red-500"
+              onClick={() => unsubscribeChannel(channel.id)}
+              >
                 Unsubscribe
               </button>
             </div>

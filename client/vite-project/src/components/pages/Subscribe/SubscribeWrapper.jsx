@@ -98,10 +98,9 @@ function SubscribeWrapper() {
                 {channel.statistics.subscriberCount} Subscribers
               </p>
               <button
-                className="text-xs md:text-xs mt-2 bg-slate-800 p-2 rounded-full hover:text-red-500"
+                className="text-xs md:text-xs font-bold mt-2 bg-slate-800 p-2 rounded-full text-blue-500 hover:text-red-600 before:content-['Subscribed'] hover:before:content-['Unsubscribe']"
                 onClick={() => unsubscribeChannel(channel.id)}
               >
-                Unsubscribe
               </button>
             </div>
           ))

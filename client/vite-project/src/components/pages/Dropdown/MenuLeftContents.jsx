@@ -150,10 +150,7 @@ function MenuLeftContents() {
                 </button>
               </li>
             )}
-        
-
             <SubscribeMenu />
-         
           </ul>
         </div>
       </div>
