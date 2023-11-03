@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import Loading_gif from "@/../public/gifs/Loading_gif.gif";
+import loading from "@/assets/loading.gif";
+import nodata from "@/assets/nodata.webp";
 
 function SubscribeWrapper() {
   const [data, setData] = useState([]);
@@ -65,7 +66,7 @@ function SubscribeWrapper() {
   if (isLoading) {
     return (
       <img
-        src={Loading_gif}
+        src={loading}
         alt="Loading..."
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-20 object-contain"
       />
@@ -74,37 +75,40 @@ function SubscribeWrapper() {
 
   if (data.length === 0) {
     return (
-      <p className="text-white mt-5 mx-10 text-center">No subscribe</p>
+      <div className="flex flex-col justify-center items-center h-screen">
+        <div className="flex flex-col justify-center items-center">
+          <img src={nodata} alt="No data" className="w-4/5 h-auto" />
+        </div>
+        <p className="text-2xl text-white font-extralight italic">
+          No subscribed channels yet
+        </p>
+      </div>
     );
   }
 
   return (
     <div className="text-white mx-10 mt-20 md:mt-40">
       <div className="px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-10">
-          {data.map((channel, index) => (
-            <div className="flex flex-col items-center" key={index}>
-              <img
-                className="w-20 h-20 rounded-full"
-                src={channel.snippet.thumbnails.default.url}
-                alt=""
-              />
-              <p className="text-xs md:text-base mt-3">
-                {channel.snippet.title}
-              </p>
-              <p className="text-xs md:text-sm text-slate-400">
-                {channel.snippet.customUrl}
-              </p>
-              <p className="text-xs md:text-sm text-slate-400">
-                {channel.statistics.subscriberCount} Subscribers
-              </p>
-              <button
-                className="text-xs md:text-xs font-bold mt-2 bg-slate-800 p-2 rounded-full text-blue-500 hover:text-red-600 before:content-['Subscribed'] hover:before:content-['Unsubscribe']"
-                onClick={() => unsubscribeChannel(channel.id)}
-              >
-              </button>
-            </div>
-          ))
-        }
+        {data.map((channel, index) => (
+          <div className="flex flex-col items-center" key={index}>
+            <img
+              className="w-20 h-20 rounded-full"
+              src={channel.snippet.thumbnails.default.url}
+              alt=""
+            />
+            <p className="text-xs md:text-base mt-3">{channel.snippet.title}</p>
+            <p className="text-xs md:text-sm text-slate-400">
+              {channel.snippet.customUrl}
+            </p>
+            <p className="text-xs md:text-sm text-slate-400">
+              {channel.statistics.subscriberCount} Subscribers
+            </p>
+            <button
+              className="text-xs md:text-xs font-bold mt-2 bg-slate-800 p-2 rounded-full text-blue-500 hover:text-red-600 before:content-['Subscribed'] hover:before:content-['Unsubscribe']"
+              onClick={() => unsubscribeChannel(channel.id)}
+            ></button>
+          </div>
+        ))}
       </div>
     </div>
   );
