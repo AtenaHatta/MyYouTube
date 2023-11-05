@@ -1,3 +1,6 @@
+import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+import { useEffect } from 'react';
+
 export function CardShowModal({
   isOpen,
   handleClose,
@@ -6,8 +9,20 @@ export function CardShowModal({
   removeFromWachList,
   token,
   handleSaveWatchLater,
-  setWatchLater
-}) {
+  setWatchLater,
+}){
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   return (
     <div>
       {isOpen && (
@@ -16,23 +31,21 @@ export function CardShowModal({
           aria-labelledby="modal-title"
           role="dialog"
           aria-modal="true"
+          onClick={handleClose}
         >
-          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div
-              className="fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity"
-              
-            ></div>
-            <span
-              className="hidden sm:inline-block sm:align-middle sm:h-screen"
-              
-            >
+          <div 
+          className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+          onClick={event => event.stopPropagation()}
+          >
+            <div className="fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity"></div>
+            <span className="hidden sm:inline-block sm:align-middle sm:h-screen">
               &#8203;
             </span>
             <div className="inline-block align-bottom max-w-5xl bg-black rounded-lg text-left  shadow-xl transform transition-all sm:my-8 sm:align-middle ">
-              <div className=" px-4 py-10">
-                <div className="relative overflow-hidden w-full pt-[56.25%] " >
+              <div className=" px-4 py-3">
+                <div className="relative overflow-hidden w-full pt-[56.25%] ">
                   <iframe
-                    className="absolute top-0 left-0 w-full h-full" 
+                    className="absolute top-0 left-0 w-full h-full"
                     src={`https://www.youtube.com/embed/${data.id.videoId}`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -69,6 +82,14 @@ export function CardShowModal({
                     </button>
                   )
                 ) : null}
+                <div className="inline-flex">
+                  <button className="bg-gray-800  hover:bg-gray-400 text-white text-xl py-2 px-4 rounded-l-2xl">
+                    <AiOutlineLike />
+                  </button>
+                  <button className="bg-gray-800  hover:bg-gray-400 text-white text-xl py-2 px-4 rounded-r-2xl">
+                    <AiOutlineDislike />
+                  </button>
+                </div>
               </div>
             </div>
           </div>

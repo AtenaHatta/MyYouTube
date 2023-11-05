@@ -1,9 +1,12 @@
 import WatchLaterCard from "./WatchLaterCard";
 import React, { useEffect, useState } from "react";
+import Loading from "../../layout/Loading";
+import NoData from "../../layout/Nodata";
 
 function WatchLaterWrapper() {
   const [data, setData] = useState([]);
   const [render , setRender] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
 
   const getWatchList = async () => {
@@ -28,8 +31,13 @@ function WatchLaterWrapper() {
         getWatchList();
     }, [render]);
 
-
-
+    if (isLoading) {
+      return <Loading />;
+    }
+  
+    if (data.length === 0) {
+      return <NoData  message="You haven't added anything to your watch later list yet" />;
+    }
 
   return (
     <div className="text-white flex items-center justify-center mt-5">

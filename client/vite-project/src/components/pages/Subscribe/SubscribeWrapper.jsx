@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import loading from "@/assets/loading.gif";
-import nodata from "@/assets/nodata.webp";
+import Loading from "../../layout/Loading";
+import NoData from "../../layout/Nodata";
 
 function SubscribeWrapper() {
   const [data, setData] = useState([]);
@@ -64,26 +64,11 @@ function SubscribeWrapper() {
   }, []);
 
   if (isLoading) {
-    return (
-      <img
-        src={loading}
-        alt="Loading..."
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-20 object-contain"
-      />
-    );
+    return <Loading />;
   }
 
   if (data.length === 0) {
-    return (
-      <div className="flex flex-col justify-center items-center h-screen">
-        <div className="flex flex-col justify-center items-center">
-          <img src={nodata} alt="No data" className="w-4/5 h-auto" />
-        </div>
-        <p className="text-2xl text-white font-extralight italic">
-          No subscribed channels yet
-        </p>
-      </div>
-    );
+    return <NoData message="You haven't subscribed to any channels yet" />;
   }
 
   return (

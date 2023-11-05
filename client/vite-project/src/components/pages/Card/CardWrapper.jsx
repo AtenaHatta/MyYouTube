@@ -30,7 +30,7 @@ function CardWrapper({ search }) {
   }, [search, url]);
 
 
-  // const apiKey = import.meta.env.VITE_YOUTUBE_APIKEY;
+   //const apiKey = import.meta.env.VITE_YOUTUBE_APIKEY;
 
   // const fetchChannelById = async () => {
   //   try {
@@ -50,7 +50,7 @@ function CardWrapper({ search }) {
   // };
 
   // useEffect(() => {
-  //   if (chanel.length > 0) {
+  //   if (data.length > 0) {
   //     fetchChannelById();
   //   }
   // });
