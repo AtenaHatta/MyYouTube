@@ -6,17 +6,19 @@ import {
   HiOutlineLogin,
   HiMenu,
 } from "react-icons/hi";
-import { AiFillHeart, AiOutlineFire, AiFillLike } from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 import { toast } from "react-toastify";
 import youtubelogo from "../../../assets/youtubelogo.png";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import SubscribeMenu from "../Subscribe/SubscribeMenu";
+import axios from "axios";
 
 function MenuLeftContents() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const VITE_HOST = import.meta.env.VITE_HOST;
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -24,30 +26,28 @@ function MenuLeftContents() {
 
   const items = [
     { icon: <HiHome />, text: "Home", link: "/" },
-    { icon: <AiFillHeart />, text: "Subscribe", link: "/subscribe", authRequired: true },
-    { icon: <MdOutlineWatchLater />, text: "Watch later", link: "/watchlater", authRequired: true },
-    { icon: <AiOutlineFire />, text: "Popular", link: "/popular" },
-    { icon: <AiFillLike />, text: "Liked videos", link: "/likedvideos", authRequired: true },
+    {
+      icon: <AiFillHeart />,
+      text: "Subscribe",
+      link: "/subscribe",
+      authRequired: true,
+    },
+    {
+      icon: <MdOutlineWatchLater />,
+      text: "Watch later",
+      link: "/watchlater",
+      authRequired: true,
+    }
   ];
 
   const handleItemClick = (item) => {
     if (item.authRequired && !user) {
-      navigate('/signin');
+      navigate("/signin");
       toast.info("You need to sign in first");
-    } else if (typeof item.link === 'string') {
+    } else {
       navigate(item.link);
     }
     toggleDrawer();
-  };
-
-  const filterItems = (items) => {
-    if (user) {
-      return items.filter(
-        (item) => item.text !== "Sign in" && item.text !== "Sign up"
-      );
-    } else {
-      return items.filter((item) => item.text !== "Log out");
-    }
   };
 
   const checkIfUserIsLoggedIn = () => {
@@ -63,6 +63,27 @@ function MenuLeftContents() {
     setUser(null);
     toast.success("Logged out successfully!");
     toggleDrawer();
+  };
+
+  //demo user
+  const demoUser = async () => {
+    try {
+      await axios
+        .post(`${VITE_HOST}/user/signin`, {
+          email: "demo@gmail.com",
+          password: "111111",
+        })
+        .then((res) => {
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("user", JSON.stringify(res.data.user));
+        });
+      toast.success("Sign in successful!");
+      toggleDrawer();
+      navigate("/");
+    } catch (error) {
+      console.error("Error signing in:", error);
+      toast.error("Sign in failed");
+    }
   };
 
   useEffect(() => {
@@ -108,7 +129,10 @@ function MenuLeftContents() {
         <div className="py-4 overflow-y-auto">
           <ul className="space-y-2 font-medium">
             {items?.map((item, index) => (
-              <li key={index} className={item.hiddenOnDesktop ? "md:hidden" : ""}>
+              <li
+                key={index}
+                className={item.hiddenOnDesktop ? "md:hidden" : ""}
+              >
                 <button
                   onClick={() => handleItemClick(item)}
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full text-left"
@@ -137,6 +161,17 @@ function MenuLeftContents() {
                     <HiOutlineLogin className="text-lg" />
                     <span className="ml-3 text-xl md:text-base">Sign up</span>
                   </Link>
+                </li>
+                <li>
+                  <button
+                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full"
+                    onClick={demoUser}
+                  >
+                    <HiOutlineLogin className="text-lg" />
+                    <span className="ml-3 text-xl md:text-base text-red-500">
+                      Demo account
+                    </span>
+                  </button>
                 </li>
               </div>
             ) : (

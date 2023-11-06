@@ -20,7 +20,7 @@ function Card({ data }) {
     setIsOpen(false);
   };
 
-  // Check watch later -------------------------------
+
   const token = localStorage.getItem("token");
   const url = import.meta.env.VITE_HOST;
 
@@ -48,6 +48,32 @@ function Card({ data }) {
     }
   };
 
+  const handleSaveWatchLater = async () => {
+    const body = {
+      videoId: data.id.videoId,
+      title: data.snippet.title,
+      description: data.snippet.description,
+      thumbnail: data.snippet.thumbnails.medium.url,
+    };
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(body),
+    };
+
+    const response = await fetch(`${url}/user/watchlist`, options);
+    const result = await response.json();
+
+    if (result.message === "Video added to favorites") {
+      setWatchLater(true);
+      toast.success("Video added to favorites");
+    }
+  }
+
   const handleRemoveFromSubscribeList = async () => {
     const body = {
       channelID: data.snippet.channelId,
@@ -71,7 +97,7 @@ function Card({ data }) {
     }
   };
 
-  // remove Watch later list ------------------------------
+  // remove Watch later list
   const removeFromWachList = async () => {
     const body = {
       videoId: data.id.videoId,
@@ -117,6 +143,8 @@ function Card({ data }) {
         setWatchLater(true);
       }
     };
+
+    // Check if the channel is already in the subscribe list
     const checkSubribedList = async () => {
       const body = {
         chanelID: data?.snippet?.channelId,
@@ -148,17 +176,16 @@ function Card({ data }) {
   }, [data, token, watchLater, subscribed, url]);
 
   useEffect(() => {
-  const apikey = import.meta.env.VITE_YOUTUBE_APIKEY;
-  const url5 = `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${data?.snippet.channelId}&key=${apikey}`;
+    if (!data) return;
+    const apikey = import.meta.env.VITE_YOUTUBE_APIKEY;
+    const url5 = `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${data?.snippet.channelId}&key=${apikey}`;
     const getSubscribers = async () => {
       const response = await fetch(url5);
       const result = await response.json();
-      setChanelImg(result.items[0].snippet.thumbnails.default.url)
+      setChanelImg(result.items[0].snippet.thumbnails.default.url);
     };
     getSubscribers();
-
   }, [data]);
-
 
   return (
     <div className="relative">
@@ -215,6 +242,7 @@ function Card({ data }) {
         watchLater={watchLater}
         removeFromWachList={removeFromWachList}
         token={token}
+        handleSaveWatchLater={handleSaveWatchLater}
       />
     </div>
   );

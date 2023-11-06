@@ -6,16 +6,17 @@ export function WatchShowModal({
   removeFromWachList,
   watchLater
 }) {
+  
   return (
-    <div>
+    <>
       {isOpen && (
         <div
-          className="fixed z-10 inset-0 overflow-y-auto"
+          className="fixed z-10 inset-0  w-[75dvw] h-[75dvh] mx-auto "
           aria-labelledby="modal-title"
           role="dialog"
           aria-modal="true"
         >
-          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <div className="flex items-end justify-center  pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div
               className="fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity"
               aria-hidden="true"
@@ -75,6 +76,6 @@ export function WatchShowModal({
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

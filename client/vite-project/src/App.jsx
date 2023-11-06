@@ -4,6 +4,7 @@ import Signin from "./components/userAuth/Signin";
 import Signup from "./components/userAuth/Signup";
 import SubscribeWrapper from "./components/pages/Subscribe/SubscribeWrapper";
 import Header from "./components/sections/Header";
+import WatchLaterWrapper from "./components/pages/WatchLater/WatchLaterWrapper";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/subscribe" element={<SubscribeWrapper />} />
+        <Route path="/watchLater" element={<WatchLaterWrapper />} />
       </Routes>
     </>
   );

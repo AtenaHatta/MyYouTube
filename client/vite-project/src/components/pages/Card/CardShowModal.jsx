@@ -1,4 +1,4 @@
-import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+// import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { useEffect } from 'react';
 
 export function CardShowModal({
@@ -82,14 +82,14 @@ export function CardShowModal({
                     </button>
                   )
                 ) : null}
-                <div className="inline-flex">
+                {/* <div className="inline-flex">
                   <button className="bg-gray-800  hover:bg-gray-400 text-white text-xl py-2 px-4 rounded-l-2xl">
                     <AiOutlineLike />
                   </button>
                   <button className="bg-gray-800  hover:bg-gray-400 text-white text-xl py-2 px-4 rounded-r-2xl">
                     <AiOutlineDislike />
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

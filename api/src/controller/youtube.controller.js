@@ -2,6 +2,7 @@ const axios = require("axios");
 const jwt = require("jsonwebtoken");
 const { User } = require("./user.controller");
 
+//search video by name
 exports.getVideoByName = async (req, res) => {
   const { inputvalue } = req.params;
   const apikey = process.env.YOUTUBE_APIKEY;
@@ -17,6 +18,7 @@ exports.getVideoByName = async (req, res) => {
   }
 };
 
+//get channel by id from user's subscribed list
 exports.getChanelById = async (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -30,7 +32,7 @@ exports.getChanelById = async (req, res) => {
       return res.status(404).json({ message: "User not found." });
     }
 
-    const subscribedChannels = user.subscribed; // Assuming this is an array of objects with a channelID property
+    const subscribedChannels = user.subscribed;
 
     let channelDataArray = [];
 
@@ -43,7 +45,7 @@ exports.getChanelById = async (req, res) => {
         response.data.items &&
         response.data.items.length > 0
       ) {
-        channelDataArray.push(response.data.items[0]); // Assuming you only get one result per ID, which should be the case
+        channelDataArray.push(response.data.items[0]);
       }
     }
 

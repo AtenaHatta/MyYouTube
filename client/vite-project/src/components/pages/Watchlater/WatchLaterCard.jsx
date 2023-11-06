@@ -2,6 +2,7 @@ import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import { WatchShowModal } from "./WatchShowModal";
+import { is } from "date-fns/locale";
 
 function WatchLaterCard({ data, setRender }) {
   const [watchLater, setWatchLater] = useState(true);
@@ -68,19 +69,17 @@ function WatchLaterCard({ data, setRender }) {
   };
 
   return (
-    <div>
-      <div onClick={handleOpen}>
+    <>
+      <div onClick={handleOpen} className="w-full h-full  flex flex-col gap-3 cursor-pointer">
         <img
-          className={`w-80 h-45 youtubelogo w-[${400}px] h-[${400}px] mr-1 rounded hover:rounded-none`}
+          className={`w-full h-full  sm:h-56 object-cover rounded hover:rounded-none`}
           src={data.thumbnail}
           alt="youtubelogo"
         />
-        <div className="flex items-center justify-start">
-          <div>
-            <h3 className="text-base">{data.title}</h3>
-          </div>
-        </div>
+        <h3>{data.title}</h3>
       </div>
+
+ 
       <WatchShowModal
         isOpen={isOpen}
         handleClose={handleClose}
@@ -90,7 +89,7 @@ function WatchLaterCard({ data, setRender }) {
         watchLater={watchLater}
         subscribe={subscribe}
       />
-    </div>
+    </>
   );
 }
 

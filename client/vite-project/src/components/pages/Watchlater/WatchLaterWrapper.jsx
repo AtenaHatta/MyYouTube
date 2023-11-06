@@ -6,10 +6,11 @@ import NoData from "../../layout/Nodata";
 function WatchLaterWrapper() {
   const [data, setData] = useState([]);
   const [render , setRender] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
 
   const getWatchList = async () => {
+    setIsLoading(true);
     const token = localStorage.getItem("token");
     const url = import.meta.env.VITE_HOST;
     const options = {
@@ -23,6 +24,7 @@ function WatchLaterWrapper() {
 
     const response = await fetch(`${url}/user/watchlistPage`, options);
     const result = await response.json();
+    setIsLoading(false);
       setData(result.watchlist);
     console.log(result);
   };
@@ -40,9 +42,9 @@ function WatchLaterWrapper() {
     }
 
   return (
-    <div className="text-white flex items-center justify-center mt-5">
+    <div className="text-white flex items-center justify-center mt-20 md:mt-40">
       <div className="px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 smXl:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-7">
           {data?.length > 0 &&
             data.map((item, index) => (
               <React.Fragment key={index}>

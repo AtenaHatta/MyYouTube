@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 function SubscribeMenu() {
   const [data, setData] = useState(null);
 
+  const token = localStorage.getItem("token");
   const getSubscribeList = async () => {
-    const token = localStorage.getItem("token");
     const url = import.meta.env.VITE_HOST;
     const options = {
       method: "GET",
@@ -56,12 +56,16 @@ function SubscribeMenu() {
   };
   
   useEffect(() => {
+    if(!token) return
     getSubscribeList();
-  }, []);
+  }, [token]);
+
+
+  if(!data) return null;
 
   return (
     <div className="flow-root">
-      <ul className="h-full max-h-[400px] overflow-y-auto mt-5">
+      <ul className="h-full max-h-[600px] overflow-y-auto mt-5">
         {!data && (
           <>
             {[...Array(10)].map((_, index) => (

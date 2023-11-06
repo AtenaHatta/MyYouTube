@@ -11,9 +11,8 @@ const {
   removeFromSubscribeList
 } = require("../controller/user.controller");
 
-router.post("/signup", postUser); //when user go to /signup, run postUser function
-
-router.post("/signin", getUser); //when user go to /signin, run getUser function
+router.post("/signup", postUser); 
+router.post("/signin", getUser); 
 
 router.post("/watchlist", postWatchList);
 router.post("/subscribelist", postSubscribeList).delete("/subscribelist", removeFromSubscribeList);

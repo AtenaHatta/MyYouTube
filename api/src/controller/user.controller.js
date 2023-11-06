@@ -76,8 +76,8 @@ exports.getUser = async (req, res) => {
 // Watch later--------------------------------------------
 exports.postWatchList = async (req, res) => {
   const video = req.body;
-  const token = req.headers.authorization.split(" ")[1]; //token is from axios.post in Card.jsx
-  const decoded = jwt.verify(token, process.env.JWT_SECRET); //decoding token
+  const token = req.headers.authorization.split(" ")[1];
+  const decoded = jwt.verify(token, process.env.JWT_SECRET); 
 
   try{
     const user = await User.findById(decoded.id);
