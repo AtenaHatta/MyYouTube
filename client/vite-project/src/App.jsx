@@ -4,7 +4,7 @@ import Signin from "./components/userAuth/Signin";
 import Signup from "./components/userAuth/Signup";
 import SubscribeWrapper from "./components/pages/Subscribe/SubscribeWrapper";
 import Header from "./components/sections/Header";
-import WatchLaterWrapper from "./components/pages/WatchLater/WatchLaterWrapper";
+import WatchLaterWrapper from "./components/pages/Watchlater/WatchLaterWrapper";
 
 function App() {
   return (
