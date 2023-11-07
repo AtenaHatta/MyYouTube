@@ -60,4 +60,4 @@ Technologies used in the project:
 *   Express
 *   TailwindCSS
 *   Library
-  ( axios, brypt, date-fns, react-hook-form, react-icons, ract-router-dom, react-toastify, zod )
+  ( axios, bcrypt, date-fns, react-hook-form, react-icons, ract-router-dom, react-toastify, zod )
