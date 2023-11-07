@@ -20,19 +20,23 @@ https://www.figma.com/file/iEqOZAHK8qcdWPgau7eWCj/MyYoutube?type=design&node-id=
 
 
 <h2>🧐 Features</h2>
-🔍 YouTube Search: <br>
-　　Enter the name of the YouTube video you're searching for.<br>
-　　The videos corresponding to your search will be displayed for you to select from.<br><br>
-🩷 Subscribe: <br>
-　　After signing up, you can add your favorite channel to your 'Subscribe'.<br><br>
-🕰️ Watch later: <br>
-　　After signing up, you can add your favorite videos to your 'Watch later'.<br><br>
-📕 Category:<br>
-　　If you're unsure of what to watch, simply click on a category located under the search bar. <br>
-　　Videos will then be displayed based on the category you select.<br><br>
-📱 Responsive Design: <br>
-　　Regardless of whether you're using a computer, tablet, or phone, <br>
-　　the app is designed to adjust and fit your screen perfectly.<br>
+Security<br>
+Enhanced password security through the use of bcrypt. This advanced hashing algorithm ensures robust encryption of passwords, providing a fortified layer of defense against unauthorized access.
+<br>
+<br>
+UI/UX<br>
+Implementation of skeleton layouts in card components bolsters user experience. These placeholders sustain the UI's visual flow while data is being retrieved from the API, offering an uninterrupted UX throughout data load times.
+<br>
+<br>
+Reusable<br>
+Account menu placement is responsive to desktop and mobile sizes, ensuring optimal accessibility. Consolidated hooks enable efficient reuse of components, maintaining consistent user experience across different device interfaces.
+<br>
+<br>
+Functionality<br>
+-YouTube Search: The videos corresponding to user's search will be displayed for user to select from.<br>
+-Subscribe: User is able to add and delete favorite channels to 'Subscribe'.<br>
+-Watch later: User is able to add and delete favorite videos to 'Watch later'.<br>
+
 
 <h2>🛠️ Installation Steps:</h2>
 
