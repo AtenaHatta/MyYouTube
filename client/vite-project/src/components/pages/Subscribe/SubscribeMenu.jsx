@@ -1,31 +1,9 @@
 import { useEffect, useState } from "react";
 
-function SubscribeMenu() {
+function SubscribeMenu({ isDrawerOpen }) {
   const [data, setData] = useState(null);
 
   const token = localStorage.getItem("token");
-  const getSubscribeList = async () => {
-    const url = import.meta.env.VITE_HOST;
-    const options = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-        "Access-Control-Allow-Origin": "*",
-      },
-    };
-
-    try {
-      const response = await fetch(`${url}/youtube/subscribe`, options);
-      if (!response.ok) {
-        throw new Error("Network response was not ok " + response.statusText);
-      }
-      const result = await response.json();
-      setData(result);
-    } catch (error) {
-      console.error("Error fetching subscribe list:", error);
-    }
-  };
 
 
   // remove Subscribe list ------------------------------
@@ -54,14 +32,35 @@ function SubscribeMenu() {
       console.error("Error unsubscribing from channel:", await response.text());
     }
   };
-  
+
   useEffect(() => {
-    if(!token) return
+    if (!token) return;
+    const getSubscribeList = async () => {
+      const url = import.meta.env.VITE_HOST;
+      const options = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
+        },
+      };
+  
+      try {
+        const response = await fetch(`${url}/youtube/subscribe`, options);
+        if (!response.ok) {
+          throw new Error("Network response was not ok " + response.statusText);
+        }
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error("Error fetching subscribe list:", error);
+      }
+    };
     getSubscribeList();
-  }, [token]);
+  }, [token, isDrawerOpen]);
 
 
-  if(!data) return null;
 
   return (
     <div className="flow-root">
@@ -105,9 +104,9 @@ function SubscribeMenu() {
               <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white"></div>
             </div>
             <div className="absolute top-0 left-0 flex items-center justify-center w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <button 
-              className="text-xs text-white md:text-xs bg-slate-800 p-2 rounded-full hover:text-red-500"
-              onClick={() => unsubscribeChannel(channel.id)}
+              <button
+                className="text-xs text-white md:text-xs bg-slate-800 p-2 rounded-full hover:text-red-500"
+                onClick={() => unsubscribeChannel(channel.id)}
               >
                 Unsubscribe
               </button>

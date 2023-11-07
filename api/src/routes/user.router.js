@@ -27,6 +27,5 @@ router
 
 router.get("/watchlistPage", getWatchList);
 
-// router.post('/subscribelist', postSubscribeList)
 
 module.exports = router;

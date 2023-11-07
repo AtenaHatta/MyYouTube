@@ -9,7 +9,6 @@ function SignUp() {
   const navigate = useNavigate();
   const VITE_HOST = import.meta.env.VITE_HOST;
 
-  //zod schema
   const schema = z
     .object({
       email: z.string().email({ message: "Invalid email" }),
@@ -26,7 +25,6 @@ function SignUp() {
     });
   console.log(useForm);
 
-  //React hook form
   const {
     register,
     handleSubmit,
@@ -35,7 +33,6 @@ function SignUp() {
     resolver: zodResolver(schema),
   });
 
-  //send this data to backend
   const handleSignUp = async (formData) => {
     try {
       await axios.post(`${VITE_HOST}/user/signup`, {
@@ -56,9 +53,8 @@ function SignUp() {
           Sign Up
         </h2>
         <form
-          className="space-y-6"
+          className="space-y-6 mt-3"
           onSubmit={handleSubmit((formData) => handleSignUp(formData))}
-          sx={{ mt: 3 }}
         >
           <div>
             <label className="block text-sm font-medium text-gray-700">

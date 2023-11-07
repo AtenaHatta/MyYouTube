@@ -47,6 +47,7 @@ function SearchForm() {
           />
           <button
             type="submit"
+            title="microphone"
             className="absolute inset-y-0 right-0 flex items-center pr-3"
           >
             <svg
@@ -65,9 +66,9 @@ function SearchForm() {
           </button>
       </div>
 
-      {/* Search button */}
       <button
         type="submit"
+        title="search"
         className="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-gray-700 rounded-lg border border-gray-400 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-black-600 dark:hover:bg-black-700 dark:focus:ring-gray-800"
       >
         <svg

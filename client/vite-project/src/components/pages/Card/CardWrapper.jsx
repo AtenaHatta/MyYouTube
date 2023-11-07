@@ -12,10 +12,9 @@ function CardWrapper({ search }) {
     const fetchData = async () => {
       try {
         const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
+          
         const data = await response.json();
+        console.log(data);
         setData(data.items);
       } catch (error) {
         console.error("Error fetching data:", error);

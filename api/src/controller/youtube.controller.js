@@ -2,7 +2,6 @@ const axios = require("axios");
 const jwt = require("jsonwebtoken");
 const { User } = require("./user.controller");
 
-//search video by name
 exports.getVideoByName = async (req, res) => {
   const { inputvalue } = req.params;
   const apikey = process.env.YOUTUBE_APIKEY;
@@ -18,7 +17,6 @@ exports.getVideoByName = async (req, res) => {
   }
 };
 
-//get channel by id from user's subscribed list
 exports.getChanelById = async (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
   const decoded = jwt.verify(token, process.env.JWT_SECRET);

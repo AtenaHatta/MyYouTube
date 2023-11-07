@@ -37,7 +37,7 @@ function MenuLeftContents() {
       text: "Watch later",
       link: "/watchlater",
       authRequired: true,
-    }
+    },
   ];
 
   const handleItemClick = (item) => {
@@ -96,6 +96,7 @@ function MenuLeftContents() {
         onClick={toggleDrawer}
         className="text-white text-3xl px-1 py-2.5 mr-2"
         type="button"
+        title="Menu"
       >
         <HiMenu />
       </button>
@@ -116,6 +117,7 @@ function MenuLeftContents() {
             onClick={toggleDrawer}
             className="text-white text-3xl px-1 py-2.5 mr-2"
             type="button"
+            title="menu"
           >
             <HiMenu />
           </button>
@@ -135,6 +137,7 @@ function MenuLeftContents() {
               >
                 <button
                   onClick={() => handleItemClick(item)}
+                  title="account"
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full text-left"
                 >
                   {item.icon}
@@ -166,6 +169,7 @@ function MenuLeftContents() {
                   <button
                     className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full"
                     onClick={demoUser}
+                    title="account"
                   >
                     <HiOutlineLogin className="text-lg" />
                     <span className="ml-3 text-xl md:text-base text-red-500">
@@ -179,13 +183,14 @@ function MenuLeftContents() {
                 <button
                   className="flex items-center w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                   onClick={handleLogout}
+                  title="account"
                 >
                   <HiOutlineLogout className="text-lg" />
                   <span className="ml-3 text-xl md:text-base">Logout</span>
                 </button>
               </li>
             )}
-            <SubscribeMenu />
+            <SubscribeMenu isDrawerOpen={isDrawerOpen} />
           </ul>
         </div>
       </div>

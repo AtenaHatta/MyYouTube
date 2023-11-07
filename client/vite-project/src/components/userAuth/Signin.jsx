@@ -9,7 +9,6 @@ function SignIn() {
   const navigate = useNavigate();
   const VITE_HOST = import.meta.env.VITE_HOST;
 
-  //zod schema
   const schema = z
     .object({
       email: z.string().email({ message: "Invalid email" }),
@@ -22,7 +21,6 @@ function SignIn() {
     });
   console.log(useForm);
 
-  //React hook form
   const {
     register,
     handleSubmit,
@@ -31,7 +29,6 @@ function SignIn() {
     resolver: zodResolver(schema),
   });
 
-  //send this data to backend
   const handleSignIn = async (formData) => {
     try {
       await axios
@@ -51,7 +48,6 @@ function SignIn() {
     }
   };
 
-    //demo user
     const demoUser = async () => {
       try {
         await axios
@@ -61,12 +57,11 @@ function SignIn() {
           })
           .then((res) => {
           console.log(res);
-
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("user", JSON.stringify(res.data.user));
           });
         toast.success("Sign in successful!");
-        // navigate("/");
+        navigate("/");
       } catch (error) {
         console.error("Error signing in:", error);
         toast.error("Sign in failed");

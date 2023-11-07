@@ -48,6 +48,7 @@ function MenuRightContents() {
         .then((res) => {
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("user", JSON.stringify(res.data.user));
+          console.log(res.data);
         });
       toast.success("Sign in successful!");
       toggleDrawer();
@@ -95,22 +96,28 @@ function MenuRightContents() {
             {!user ? (
               <>
                 <li>
-                  <Link
-                    to="/signin"
+                  <button
                     className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    onClick={() => {
+                      toggleDrawer();
+                      navigate("/signin");
+                    }}
                   >
                     <HiOutlineLogin className="text-lg" />
                     <span className="ml-3 text-xl md:text-base">Sign in</span>
-                  </Link>
+                  </button>
                 </li>
                 <li>
-                  <Link
-                    to="/signup"
+                  <button
                     className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    onClick={() => {
+                      toggleDrawer();
+                      navigate("/signup");
+                    }}
                   >
                     <HiOutlineLogin className="text-lg" />
                     <span className="ml-3 text-xl md:text-base">Sign up</span>
-                  </Link>
+                  </button>
                 </li>
                 <li>
                   <button
