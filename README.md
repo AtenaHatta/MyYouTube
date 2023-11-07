@@ -7,12 +7,17 @@
 
 <h2>🚀 Demo</h2>
 https://my-you-tube-client.vercel.app/
-<h2>🎨 Wireframe</h2>
-https://www.figma.com/file/iEqOZAHK8qcdWPgau7eWCj/MyYoutube?type=design&node-id=2%3A3&mode=design&t=2OUpFEvHhL6BKNrS-1
 <br>
 <br>
 <img src="https://ik.imagekit.io/atcan/youtubeReadme02.png?updatedAt=1691378368468" alt="Card" width="900" height="100%/">
 <img src="https://ik.imagekit.io/atcan/Screenshot%202023-08-09%20at%205.30.11%20PM.png?updatedAt=1691627516219" alt="subscribe" width="900" height="100%/">
+
+<h2>🎨 Wireframe</h2>
+https://www.figma.com/file/iEqOZAHK8qcdWPgau7eWCj/MyYoutube?type=design&node-id=2%3A3&mode=design&t=2OUpFEvHhL6BKNrS-1
+<br>
+<br>
+<img src="https://ik.imagekit.io/atcan/wireframe_myyoutube.jpg?updatedAt=1699376491455" alt="Card" width="900" height="100%/">
+
 
 <h2>🧐 Features</h2>
 🔍 YouTube Search: <br>
