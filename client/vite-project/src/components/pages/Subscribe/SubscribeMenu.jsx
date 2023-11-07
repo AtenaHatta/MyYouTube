@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 function SubscribeMenu({ isDrawerOpen }) {
   const [data, setData] = useState(null);
 
+
   const token = localStorage.getItem("token");
 
   // remove Subscribe list ------------------------------
@@ -64,7 +65,7 @@ function SubscribeMenu({ isDrawerOpen }) {
     }
   }, [token, isDrawerOpen]);
 
-  if (!token) return "";
+   if (!token) return "";
 
   return (
     <div className="flow-root">

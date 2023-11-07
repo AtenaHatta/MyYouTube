@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import SubscribeMenu from "../Subscribe/SubscribeMenu";
 import axios from "axios";
+import Auth from "../../Auth/Auth";
 
 function MenuLeftContents() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -145,51 +146,13 @@ function MenuLeftContents() {
                 </button>
               </li>
             ))}
-            {!user ? (
-              <div className="md:hidden">
-                <li>
-                  <Link
-                    to="/signin"
-                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                  >
-                    <HiOutlineLogin className="text-lg" />
-                    <span className="ml-3 text-xl md:text-base">Sign in</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/signup"
-                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                  >
-                    <HiOutlineLogin className="text-lg" />
-                    <span className="ml-3 text-xl md:text-base">Sign up</span>
-                  </Link>
-                </li>
-                <li>
-                  <button
-                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full"
-                    onClick={demoUser}
-                    title="account"
-                  >
-                    <HiOutlineLogin className="text-lg" />
-                    <span className="ml-3 text-xl md:text-base text-red-500">
-                      Demo account
-                    </span>
-                  </button>
-                </li>
-              </div>
-            ) : (
-              <li className="md:hidden">
-                <button
-                  className="flex items-center w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                  onClick={handleLogout}
-                  title="account"
-                >
-                  <HiOutlineLogout className="text-lg" />
-                  <span className="ml-3 text-xl md:text-base">Logout</span>
-                </button>
-              </li>
-            )}
+            <div className="md:hidden">
+
+            <Auth
+              isDrawerOpen={isDrawerOpen}
+              setIsDrawerOpen={setIsDrawerOpen}
+            />
+            </div>
             <SubscribeMenu isDrawerOpen={isDrawerOpen} />
           </ul>
         </div>

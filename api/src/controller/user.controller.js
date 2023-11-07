@@ -38,7 +38,6 @@ exports.postUser = async (req, res) => {
     await newUser.save(); //save to mongodb
     res.status(200).json({ message: "User created successfully" });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -62,7 +61,6 @@ exports.getUser = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     res.status(200).json({ user: token, token: token });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -90,7 +88,6 @@ exports.postWatchList = async (req, res) => {
 
     return res.status(200).json({ message: "Video added to favorites" });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -119,7 +116,6 @@ exports.postSubscribeList = async (req, res) => {
 
     return res.status(200).json({ message: "You are now subscribed" });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -140,7 +136,6 @@ exports.checkWatchList = async (req, res) => {
     }
     return res.status(200).json({ message: "Video is not in favorites" });
   } catch (err) {
-    console.log(err);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -163,7 +158,6 @@ exports.checkSubribeList = async (req, res) => {
     }
     return res.status(200).json({ message: "You are not subscribed" });
   } catch (err) {
-    console.log(err);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -177,7 +171,6 @@ exports.getWatchList = async (req, res) => {
 
     return res.status(200).json({ watchlist: user.watchlist });
   } catch (err) {
-    console.log(err);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -197,7 +190,6 @@ exports.removeWatchList = async (req, res) => {
 
     return res.status(200).json({ message: "Video removed from watchlist" });
   } catch (err) {
-    console.log(err);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -217,7 +209,6 @@ exports.removeFromSubscribeList = async (req, res) => {
 
     return res.status(200).json({ message: "You are now unsubscribed" });
   } catch (err) {
-    console.log(err);
     res.status(500).json({ message: "Internal server error" });
   }
 };
