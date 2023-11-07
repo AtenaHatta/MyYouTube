@@ -5,7 +5,6 @@ function SubscribeMenu({ isDrawerOpen }) {
 
   const token = localStorage.getItem("token");
 
-
   // remove Subscribe list ------------------------------
   const unsubscribeChannel = async (channelID) => {
     console.log(channelID);
@@ -32,6 +31,7 @@ function SubscribeMenu({ isDrawerOpen }) {
       console.error("Error unsubscribing from channel:", await response.text());
     }
   };
+ 
 
   useEffect(() => {
     if (!token) return;
@@ -45,7 +45,7 @@ function SubscribeMenu({ isDrawerOpen }) {
           "Access-Control-Allow-Origin": "*",
         },
       };
-  
+
       try {
         const response = await fetch(`${url}/youtube/subscribe`, options);
         if (!response.ok) {
@@ -58,16 +58,20 @@ function SubscribeMenu({ isDrawerOpen }) {
       }
     };
     getSubscribeList();
+
+    if (isDrawerOpen) {
+      setData(null);
+    }
   }, [token, isDrawerOpen]);
 
-
+  if (!token) return "";
 
   return (
     <div className="flow-root">
       <ul className="h-full max-h-[600px] overflow-y-auto mt-5">
         {!data && (
           <>
-            {[...Array(10)].map((_, index) => (
+            {[...Array(8)].map((_, index) => (
               <li key={index} className="py-3 sm:py-4">
                 <div className="flex items-center space-x-4 animate-pulse">
                   <div className="flex-shrink-0">

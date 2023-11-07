@@ -124,6 +124,8 @@ function Card({ data }) {
   };
 
   useEffect(() => {
+
+    if(!data) return;
     const checkWatchList = async () => {
       const body = {
         videoId: data?.id?.videoId,
@@ -172,9 +174,7 @@ function Card({ data }) {
       await checkSubribedList();
     };
 
-    if (token) {
       checkData();
-    }
   }, [data, token, watchLater, subscribed, url]);
 
   useEffect(() => {
