@@ -14,18 +14,17 @@ const {
 router.post("/signup", postUser); 
 router.post("/signin", getUser); 
 
-router.post("/watchlist", postWatchList);
 router.post("/subscribelist", postSubscribeList).delete("/subscribelist", removeFromSubscribeList);
+router.post("/watchlist", postWatchList);
+
+router
+  .post("/checkSubribeList", checkSubribeList)
+  .delete("/checkSubribeList", removeWatchList);
 
 router
   .post("/checkWatchList", checkWatchList)
   .delete("/checkWatchList", removeWatchList);
-  
-router
-  .post("/checkSubribeList", checkSubribeList)
-  .delete("/checkWatchList", removeWatchList);
 
 router.get("/watchlistPage", getWatchList);
-
 
 module.exports = router;

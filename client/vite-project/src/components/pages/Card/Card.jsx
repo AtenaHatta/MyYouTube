@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
-// import { handleSaveWatchLater, handleSaveToSubscribeList } from "./card.config";
-import { toast } from "react-toastify";
 import { format } from "date-fns";
 import { CardShowModal } from "./CardShowModal";
 import Skelton from "../../layout/Skelton";
+import {
+  handleSaveWatchLater,
+  handleSaveToSubscribeList,
+  handleRemoveFromSubscribeList,
+  removeFromWachList,
+} from "./card.config";
 
 function Card({ data }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +16,6 @@ function Card({ data }) {
   const [subscribed, setSubscribed] = useState(null);
   const [chanelImg, setChanelImg] = useState(null);
 
-  // ShowModal
   const handleOpen = () => {
     setIsOpen(true);
   };
@@ -20,112 +23,12 @@ function Card({ data }) {
     setIsOpen(false);
   };
 
-
   const token = localStorage.getItem("token");
   const url = import.meta.env.VITE_HOST;
 
-  const handleAddSubscribe = async () => {
-    const body = {
-      channelTitle: data.snippet.channelTitle,
-      channelID: data.snippet.channelId,
-    };
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify(body),
-    };
-
-    const response = await fetch(`${url}/user/subscribelist`, options);
-    const result = await response.json();
-
-    if (result.message === "You are now subscribed") {
-      setSubscribed(true);
-      toast.success("You are now subscribed");
-    }
-  };
-
-
-
-  const handleSaveWatchLater = async () => {
-    const body = {
-      videoId: data.id.videoId,
-      title: data.snippet.title,
-      description: data.snippet.description,
-      thumbnail: data.snippet.thumbnails.medium.url,
-    };
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify(body),
-    };
-
-    const response = await fetch(`${url}/user/watchlist`, options);
-    const result = await response.json();
-
-    if (result.message === "Video added to favorites") {
-      setWatchLater(true);
-      toast.success("Video added to favorites");
-    }
-  }
-
-  const handleRemoveFromSubscribeList = async () => {
-    const body = {
-      channelID: data.snippet.channelId,
-    };
-    const options = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify(body),
-    };
-
-    const response = await fetch(`${url}/user/subscribelist`, options);
-    const result = await response.json();
-
-    if (result.message === "You are now unsubscribed") {
-      setSubscribed(false);
-      toast.success("You are now unsubscribed");
-    }
-  };
-
-  // remove Watch later list
-  const removeFromWachList = async () => {
-    const body = {
-      videoId: data.id.videoId,
-    };
-    const options = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify(body),
-    };
-
-    const response = await fetch(`${url}/user/checkWatchList`, options);
-    const result = await response.json();
-
-    if (result.message === "Video removed from watchlist") {
-      setWatchLater(false);
-      toast.success("Video removed from watchlist");
-    }
-  };
-
   useEffect(() => {
+    if (!data) return;
 
-    if(!data) return;
     const checkWatchList = async () => {
       const body = {
         videoId: data?.id?.videoId,
@@ -148,7 +51,6 @@ function Card({ data }) {
       }
     };
 
-    // Check if the channel is already in the subscribe list
     const checkSubribedList = async () => {
       const body = {
         chanelID: data?.snippet?.channelId,
@@ -174,16 +76,17 @@ function Card({ data }) {
       await checkSubribedList();
     };
 
-      checkData();
+    checkData();
   }, [data, token, watchLater, subscribed, url]);
 
   useEffect(() => {
     if (!data) return;
     const apikey = import.meta.env.VITE_YOUTUBE_APIKEY;
-    const url5 = `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${data?.snippet.channelId}&key=${apikey}`;
+    const url5 = `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${data.snippet.channelId}&key=${apikey}`;
     const getSubscribers = async () => {
       const response = await fetch(url5);
       const result = await response.json();
+      console.log(result);
       setChanelImg(result.items[0].snippet.thumbnails.default.url);
     };
     getSubscribers();
@@ -219,14 +122,18 @@ function Card({ data }) {
                 {!subscribed ? (
                   <button
                     className="font-bold text-xs md:text-md bg-slate-800 px-2 py-1 ml-2 rounded-full text-gray-300 hover:text-blue-500"
-                    onClick={handleAddSubscribe}
+                    onClick={() =>
+                      handleSaveToSubscribeList(data, setSubscribed)
+                    }
                   >
                     Subscribe
                   </button>
                 ) : (
                   <button
                     className="font-bold text-xs md:text-md bg-slate-800 px-2 py-1 ml-2 rounded-full text-blue-500 hover:text-gray-300"
-                    onClick={handleRemoveFromSubscribeList}
+                    onClick={() =>
+                      handleRemoveFromSubscribeList(data, setSubscribed)
+                    }
                   >
                     Subscribed
                   </button>
@@ -240,6 +147,7 @@ function Card({ data }) {
       <CardShowModal
         isOpen={isOpen}
         handleClose={handleClose}
+        setWatchLater={setWatchLater}
         data={data}
         watchLater={watchLater}
         removeFromWachList={removeFromWachList}

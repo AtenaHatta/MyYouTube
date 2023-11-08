@@ -1,5 +1,4 @@
-// import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 export function CardShowModal({
   isOpen,
@@ -10,16 +9,15 @@ export function CardShowModal({
   token,
   handleSaveWatchLater,
   setWatchLater,
-}){
-
+}) {
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [isOpen]);
 
@@ -33,9 +31,9 @@ export function CardShowModal({
           aria-modal="true"
           onClick={handleClose}
         >
-          <div 
-          className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
-          onClick={event => event.stopPropagation()}
+          <div
+            className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+            onClick={(event) => event.stopPropagation()}
           >
             <div className="fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity"></div>
             <span className="hidden sm:inline-block sm:align-middle sm:h-screen">
@@ -75,21 +73,13 @@ export function CardShowModal({
                   ) : (
                     <button
                       type="button"
-                      onClick={removeFromWachList}
+                      onClick={() => removeFromWachList(data, setWatchLater)}
                       className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                     >
                       Remove from watch later
                     </button>
                   )
                 ) : null}
-                {/* <div className="inline-flex">
-                  <button className="bg-gray-800  hover:bg-gray-400 text-white text-xl py-2 px-4 rounded-l-2xl">
-                    <AiOutlineLike />
-                  </button>
-                  <button className="bg-gray-800  hover:bg-gray-400 text-white text-xl py-2 px-4 rounded-r-2xl">
-                    <AiOutlineDislike />
-                  </button>
-                </div> */}
               </div>
             </div>
           </div>

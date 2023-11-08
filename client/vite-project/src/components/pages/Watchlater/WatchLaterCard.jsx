@@ -2,11 +2,9 @@ import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import { WatchShowModal } from "./WatchShowModal";
-import { is } from "date-fns/locale";
 
 function WatchLaterCard({ data, setRender }) {
   const [watchLater, setWatchLater] = useState(true);
-  const [subscribe, setSubscribe] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem("token");
   const url = import.meta.env.VITE_HOST;
@@ -18,7 +16,6 @@ function WatchLaterCard({ data, setRender }) {
     setIsOpen(false);
   };
 
-  // Remove from Watch later -----------------
   const removeFromWachList = async () => {
     const body = {
       videoId: data.videoId,
@@ -33,6 +30,8 @@ function WatchLaterCard({ data, setRender }) {
       body: JSON.stringify(body),
     };
 
+    // setWatchLater(false);
+
     const response = await fetch(`${url}/user/checkWatchList`, options);
     const result = await response.json();
 
@@ -43,7 +42,6 @@ function WatchLaterCard({ data, setRender }) {
     }
   };
 
-  // Remove from Subscrivbe -----------------
   const removeFromSubscribeList = async () => {
     const body = {
       channelId: data.channelId,
@@ -70,7 +68,10 @@ function WatchLaterCard({ data, setRender }) {
 
   return (
     <>
-      <div onClick={handleOpen} className="w-full h-full  flex flex-col gap-3 cursor-pointer">
+      <div
+        onClick={handleOpen}
+        className="w-full h-full  flex flex-col gap-3 cursor-pointer"
+      >
         <img
           className={`w-full h-full  sm:h-56 object-cover rounded hover:rounded-none`}
           src={data.thumbnail}
@@ -79,7 +80,6 @@ function WatchLaterCard({ data, setRender }) {
         <h3>{data.title}</h3>
       </div>
 
- 
       <WatchShowModal
         isOpen={isOpen}
         handleClose={handleClose}
@@ -87,7 +87,6 @@ function WatchLaterCard({ data, setRender }) {
         removeFromSubscribeList={removeFromSubscribeList}
         removeFromWachList={removeFromWachList}
         watchLater={watchLater}
-        subscribe={subscribe}
       />
     </>
   );

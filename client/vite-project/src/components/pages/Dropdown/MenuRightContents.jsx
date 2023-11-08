@@ -1,65 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { VscAccount } from "react-icons/vsc";
 import { IoClose } from "react-icons/io5";
-import { Link } from "react-router-dom";
-import { HiOutlineLogout, HiOutlineLogin } from "react-icons/hi";
-import { toast } from "react-toastify";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import Auth from "../../Auth/Auth";
 
 function MenuRightContents() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [user, setUser] = useState(null);
-  // const VITE_HOST = import.meta.env.VITE_HOST;
-  // const navigate = useNavigate();
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
-  // const checkIfUserIsLoggedIn = () => {
-  //   const user = JSON.parse(localStorage.getItem("user"));
-  //   if (user) {
-  //     setUser(user);
-  //   }
-  // };
-
-  // const handleLogout = () => {
-  //   localStorage.removeItem("user");
-  //   localStorage.removeItem("token");
-  //   setUser(null);
-  //   toast.success("Logged out successfully!");
-  //   // navigate("/");
-  //   toggleDrawer();
-  // };
-
-  // useEffect(() => {
-  //   checkIfUserIsLoggedIn();
-  // }, [isDrawerOpen]);
-
-  //demo user
-  // const demoUser = async () => {
-  //   try {
-  //     await axios
-  //       .post(`${VITE_HOST}/user/signin`, {
-  //         email: "demo@gmail.com",
-  //         password: "111111",
-  //       })
-  //       .then((res) => {
-  //         localStorage.setItem("token", res.data.token);
-  //         localStorage.setItem("user", JSON.stringify(res.data.user));
-  //         console.log(res.data);
-  //       });
-  //     toast.success("Sign in successful!");
-  //     toggleDrawer();
-  //     navigate("/");
-  //   } catch (error) {
-  //     console.error("Error signing in:", error);
-  //     toast.error("Sign in failed");
-  //   }
-  // };
-
+  
   return (
     <div className="w-200 relative z-10">
       <button

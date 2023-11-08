@@ -37,7 +37,6 @@ function SignIn() {
           password: formData.password,
         })
         .then((res) => {
-          //put token in local storage
           localStorage.setItem("token", res.data.user);
           localStorage.setItem("user", JSON.stringify(res.data.user));
         });

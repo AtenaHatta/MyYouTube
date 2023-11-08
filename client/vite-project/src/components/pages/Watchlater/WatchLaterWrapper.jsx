@@ -8,7 +8,6 @@ function WatchLaterWrapper() {
   const [render , setRender] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-
   const getWatchList = async () => {
     setIsLoading(true);
     const token = localStorage.getItem("token");

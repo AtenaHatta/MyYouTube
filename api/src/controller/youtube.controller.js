@@ -46,7 +46,6 @@ exports.getChanelById = async (req, res) => {
 
     return res.status(200).json(channelDataArray);
   } catch (error) {
-    console.error("Error fetching channel data:", error);
     return res.status(500).json({ message: "Internal server error" });
   }
 };

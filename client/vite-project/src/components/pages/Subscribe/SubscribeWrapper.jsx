@@ -21,7 +21,7 @@ function SubscribeWrapper() {
     try {
       const response = await fetch(`${url}/youtube/subscribe`, options);
       if (!response.ok) {
-        throw new Error("Network response was not ok " + response.statusText);
+        throw new Error("Network response was not ok" + response.statusText);
       }
       const result = await response.json();
       setData(result);
@@ -32,9 +32,7 @@ function SubscribeWrapper() {
     }
   };
 
-  // remove Subscribe list ------------------------------
   const unsubscribeChannel = async (channelID) => {
-    console.log(channelID);
     const token = localStorage.getItem("token");
     const url = import.meta.env.VITE_HOST;
     const options = {
@@ -50,7 +48,6 @@ function SubscribeWrapper() {
     const response = await fetch(`${url}/user/subscribelist`, options);
     console.log(response);
     if (response.ok) {
-      // Remove the unsubscribed channel from local state
       setData((prevData) =>
         prevData.filter((channel) => channel.id !== channelID)
       );
@@ -79,7 +76,7 @@ function SubscribeWrapper() {
             <img
               className="w-20 h-20 rounded-full"
               src={channel.snippet.thumbnails.default.url}
-              alt=""
+              alt={channel.snippet.title}
             />
             <p className="text-xs md:text-base mt-3">{channel.snippet.title}</p>
             <p className="text-xs md:text-sm text-slate-400">

@@ -1,25 +1,17 @@
 import { useEffect, useState } from "react";
 import { MdOutlineWatchLater } from "react-icons/md";
-import {
-  HiHome,
-  HiOutlineLogout,
-  HiOutlineLogin,
-  HiMenu,
-} from "react-icons/hi";
+import { HiHome, HiMenu } from "react-icons/hi";
 import { AiFillHeart } from "react-icons/ai";
 import { toast } from "react-toastify";
 import youtubelogo from "../../../assets/youtubelogo.png";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import SubscribeMenu from "../Subscribe/SubscribeMenu";
-import axios from "axios";
 import Auth from "../../Auth/Auth";
 
 function MenuLeftContents() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-  const VITE_HOST = import.meta.env.VITE_HOST;
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -55,35 +47,6 @@ function MenuLeftContents() {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       setUser(user);
-    }
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    setUser(null);
-    toast.success("Logged out successfully!");
-    toggleDrawer();
-  };
-
-  //demo user
-  const demoUser = async () => {
-    try {
-      await axios
-        .post(`${VITE_HOST}/user/signin`, {
-          email: "demo@gmail.com",
-          password: "111111",
-        })
-        .then((res) => {
-          localStorage.setItem("token", res.data.token);
-          localStorage.setItem("user", JSON.stringify(res.data.user));
-        });
-      toast.success("Sign in successful!");
-      toggleDrawer();
-      navigate("/");
-    } catch (error) {
-      console.error("Error signing in:", error);
-      toast.error("Sign in failed");
     }
   };
 
@@ -147,11 +110,10 @@ function MenuLeftContents() {
               </li>
             ))}
             <div className="md:hidden">
-
-            <Auth
-              isDrawerOpen={isDrawerOpen}
-              setIsDrawerOpen={setIsDrawerOpen}
-            />
+              <Auth
+                isDrawerOpen={isDrawerOpen}
+                setIsDrawerOpen={setIsDrawerOpen}
+              />
             </div>
             <SubscribeMenu isDrawerOpen={isDrawerOpen} />
           </ul>

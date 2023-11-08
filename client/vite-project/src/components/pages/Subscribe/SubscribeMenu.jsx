@@ -2,11 +2,8 @@ import { useEffect, useState } from "react";
 
 function SubscribeMenu({ isDrawerOpen }) {
   const [data, setData] = useState(null);
-
-
   const token = localStorage.getItem("token");
 
-  // remove Subscribe list ------------------------------
   const unsubscribeChannel = async (channelID) => {
     console.log(channelID);
     const token = localStorage.getItem("token");
@@ -24,7 +21,6 @@ function SubscribeMenu({ isDrawerOpen }) {
     const response = await fetch(`${url}/user/subscribelist`, options);
 
     if (response.ok) {
-      // Remove the unsubscribed channel from local state
       setData((prevData) =>
         prevData.filter((channel) => channel.id !== channelID)
       );
@@ -32,7 +28,6 @@ function SubscribeMenu({ isDrawerOpen }) {
       console.error("Error unsubscribing from channel:", await response.text());
     }
   };
- 
 
   useEffect(() => {
     if (!token) return;
@@ -65,7 +60,7 @@ function SubscribeMenu({ isDrawerOpen }) {
     }
   }, [token, isDrawerOpen]);
 
-   if (!token) return "";
+  if (!token) return "";
 
   return (
     <div className="flow-root">
